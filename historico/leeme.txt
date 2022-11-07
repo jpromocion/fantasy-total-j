@@ -1,0 +1,21 @@
+
+Importar por cada temporada: Ejemplo "2022\".
+
+Importar con columna ID -> para asegurar fk correctas.
+
+Los archiuvos son txt con datos descargados en formato texto csv con el Data Workshop de APEX.
+
+En "iniciales\": tenemos la importacion de las tablas iniciales... basicamente para asegurar que los id de fks a ella no fallen, importamos aqui como son las filas en mis caso:
+  -FANTASY_SUPPLIER -> 01_fantasy_supplier.txt
+  -FANTASY_POSITION -> 02_fantasy_position.txt
+  -FANTASY_TEAM -> 03_fantasy_team.txt
+
+Tablas necesarias a importar en orden por temporada:
+  -FANTASY_SEASON -> 01_fantasy_season.txt
+  -FANTASY_PLAYER -> 02_fantasy_player.txt
+  -FANTASY_PROYECTION -> 03_fantasy_proyection.txt
+  -FANTASY_POINT -> 04_fantasy_point.txt
+  -FANTASY_VALUE -> 05_fantasy_value.txt
+
+
+

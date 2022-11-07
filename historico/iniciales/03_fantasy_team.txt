@@ -1,0 +1,33 @@
+Id,TEAM,CITY,URLLOGO,CREATED,CREATED_BY,UPDATED,UPDATED_BY
+1,Cardinals,Arizona,https://static.www.nfl.com/image/private/f_auto/league/u9fltoslqdsyao8cpm0k,2022-11-03T12:15:48,JORTRI,2022-11-03T12:29:36,JORTRI
+2,Falcons,Atlanta,https://static.www.nfl.com/image/private/f_auto/league/d8m7hzpsbrl6pnqht8op,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+3,Panthers,Carolina,https://static.www.nfl.com/image/private/f_auto/league/ervfzgrqdpnc7lh5gqwq,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+4,Bears,Chicago,https://static.www.nfl.com/image/private/f_auto/league/ra0poq2ivwyahbaq86d2,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+5,Cowboys,Dallas,https://static.www.nfl.com/image/private/f_auto/league/ieid8hoygzdlmzo0tnf6,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+6,Lions,Detroit,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ocvxwnapdvwevupe4tpr,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+7,Packers,Green Bay,https://res.cloudinary.com/nflleague/image/private/f_auto/league/gppfvr7n8gljgjaqux2x,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+8,Rams,Los Angeles,https://static.www.nfl.com/image/private/f_auto/league/ayvwcmluj2ohkdlbiegi,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+9,Vikings,Minnesota,https://res.cloudinary.com/nflleague/image/private/f_auto/league/teguylrnqqmfcwxvcmmz,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+10,Saints,New Orleans,https://static.www.nfl.com/image/private/f_auto/league/grhjkahghjkk17v43hdx,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+11,Giants,New York,https://res.cloudinary.com/nflleague/image/private/f_auto/league/t6mhdmgizi6qhndh8b9p,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+12,Eagles,Philadelphia,https://res.cloudinary.com/nflleague/image/private/f_auto/league/puhrqgj71gobgdkdo6uq,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+13,49ers,San Francisco,https://res.cloudinary.com/nflleague/image/private/f_auto/league/dxibuyxbk0b9ua5ih9hn,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+14,Seahawks,Seattle,https://res.cloudinary.com/nflleague/image/private/f_auto/league/gcytzwpjdzbpwnwxincg,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+15,Buccaneers,Tampa Bay,https://static.www.nfl.com/image/private/f_auto/league/v8uqiualryypwqgvwcih,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+16,Commanders,Washington,https://static.www.nfl.com/image/private/f_auto/league/xymxwrxtyj9fhaemhdyd,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+17,Ravens,Baltimore,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ucsdijmddsqcj1i9tddd,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+18,Bills,Buffalo,https://res.cloudinary.com/nflleague/image/private/f_auto/league/giphcy6ie9mxbnldntsf,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+19,Bengals,Cincinnati,https://res.cloudinary.com/nflleague/image/private/f_auto/league/okxpteoliyayufypqalq,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+20,Browns,Cleveland,https://static.www.nfl.com/image/private/f_auto/league/fgbn8acp4opvyxk13dcy,2022-11-03T12:15:48,JORTRI,2022-11-03T12:20:01,JORTRI
+21,Broncos,Denver,https://res.cloudinary.com/nflleague/image/private/f_auto/league/t0p7m5cjdjy18rnzzqbx,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+22,Texans,Houston,https://static.www.nfl.com/image/private/f_auto/league/bpx88i8nw4nnabuq0oob,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+23,Colts,Indianapolis,https://static.www.nfl.com/image/private/f_auto/league/ketwqeuschqzjsllbid5,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+24,Jaguars,Jacksonville,https://res.cloudinary.com/nflleague/image/private/f_auto/league/qycbib6ivrm9dqaexryk,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+25,Chiefs,Kansas City,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ujshjqvmnxce8m4obmvs,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+26,Raiders,Las Vegas,https://static.www.nfl.com/image/private/f_auto/league/gzcojbzcyjgubgyb6xf2,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+27,Chargers,Los Angeles,https://static.www.nfl.com/image/private/f_auto/league/dhfidtn8jrumakbogeu4,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+28,Dolphins,Miami,https://res.cloudinary.com/nflleague/image/private/f_auto/league/lits6p8ycthy9to70bnt,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+29,Patriots,New England,https://res.cloudinary.com/nflleague/image/private/f_auto/league/moyfxx3dq5pio4aiftnc,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+30,Jets,New York,https://static.www.nfl.com/image/private/f_auto/league/ekijosiae96gektbo4iw,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+31,Steelers,Pittsburgh,https://res.cloudinary.com/nflleague/image/private/f_auto/league/xujg9t3t4u5nmjgr54wx,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
+32,Titans,Tennessee,https://static.www.nfl.com/image/private/f_auto/league/pln44vuzugjgipyidsre,2022-11-03T12:15:48,JORTRI,2022-11-03T12:15:48,JORTRI
