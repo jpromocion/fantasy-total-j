@@ -1,4 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+#forzar que los .sql los reconozca al lengua PLSQL, por defecto los ignora
 *.sql linguist-language=PLSQL
