@@ -1,29 +1,59 @@
 # Fantasy Total
-Gesti髇 de las previsiones de fantasy que hacen diversas p醙inas proveedoras sobre tu alineaci髇 semanal en Fantasy, para estudiar que proveedor acierta mas.
+Gesti贸n de las previsiones de fantasy que hacen diversas p谩ginas proveedoras sobre tu alineaci贸n semanal en Fantasy, para estudiar que proveedor acierta mas.
 
-Se rellenan previa a la semana las predicciones de jugadores por cada posici髇 y proveedor.
+Se rellenan previa a la semana las predicciones de jugadores por cada posici贸n y proveedor.
 
 Se rellena post a la semana las puntuaciones de fantasy de tus jugadores.
 
-Se obtiene un resumen de puntuaci髇 fantasy de cada proveedor en esa semana, y permite la asignaci髇 de los denomincados "Puntos Win" seg鷑 el usuario estime que cada proveedor ha cumplido en esa semana.
+Se obtiene un resumen de puntuaci贸n fantasy de cada proveedor en esa semana, y permite la asignaci贸n de los denomincados "Puntos Win" (0,5,10) seg煤n el usuario estime que cada proveedor ha cumplido en esa semana.
 
-Tiene un dashboard de inicio de gr醘icos para resumir los datos principales, y consultar que proveedor es m醩 fiable.
+Tiene un dashboard de inicio de gr谩ficos para resumir los datos principales, y consultar que proveedor es m谩s fiable cada temporada.
 
 ## Requisitos
 
-Es una aplicaci髇 en Oracle APEX (Versi髇 22.1.6).
+Es una aplicaci贸n en Oracle APEX (Versi贸n 22.1.6).
 
 Se requiere al menos una Oracle 12c. Preparado para utilizarse con el Cloud Free de Oracle.
 
 ## Installation
 
-Es una exportaci髇 de la aplicaci髇 APEX tal cual en "f102":
- * Version descromida de la exportacion por zip.
+Es una exportaci贸n de la aplicaci贸n APEX tal cual en "f102":
+ * Version descromida de la exportacion por zip ("Split into Multiple Files").
  * Incluye los Supported Objects para crearla desde inicio.
 
 Instalar en una nueva instancia simplemente:
- * Importar aplicaci髇, asignandole el id que queremos.
+ * Importar aplicaci贸n, asignandole el id que queremos.
  * Si no se tienen los objetos de inicio marchar la opcion de instalar los "Supported Objects"
 
 En "historico":
- * Estan los datos hist髍icos que para mi caso he ido generando por temporada.
+ * Estan los datos hist贸ricos que para mi caso he ido generando por temporada.
+
+
+## Screenshots
+
+### Panel de control resumen temporada
+
+![Imagen panel control](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen1.png)
+
+### Jugadores por temporada
+
+![Imagen Jugadores por temporada](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen2.png)
+
+### Carga proyecciones de cada proveedor pre-week
+
+![Imagen Carga proyecciones de cada proveedor pre-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen3.png)
+
+### Relleno puntos Fanmtasy realizados post-week
+
+![Imagen Relleno puntos Fanmtasy realizados post-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen4.png)
+
+### Consulta puntos totalizados por proveedor en week
+
+![Imagen Consulta puntos totalizados por proveedor en week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen5.png)
+
+### Asignaci贸n puntos win por proveedor seg煤n resultados
+
+![Imagen Asignaci贸n puntos win por proveedor seg煤n resultados](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen6.png)
+
+
+

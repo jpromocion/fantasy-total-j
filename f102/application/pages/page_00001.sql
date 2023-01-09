@@ -4,8 +4,8 @@ begin
 --     PAGE: 00001
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2022.04.12'
-,p_release=>'22.1.6'
+ p_version_yyyy_mm_dd=>'2022.10.07'
+,p_release=>'22.2.1'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -13,7 +13,6 @@ wwv_flow_imp.component_begin (
 );
 wwv_flow_imp_page.create_page(
  p_id=>1
-,p_user_interface_id=>wwv_flow_imp.id(17191965490935234)
 ,p_name=>'Home'
 ,p_alias=>'HOME'
 ,p_step_title=>'Fantasy Total'
@@ -22,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'13'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20221107095843'
+,p_last_upd_yyyymmddhh24miss=>'20230109085645'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17202544383935283)
@@ -344,7 +343,7 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_data_source_type=>'SQL'
 ,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT',
-'  PR.week,',
+'  lpad(PR.week,2,''0'') week,',
 '  SU.name,',
 '  case',
 '    when SU.name = ''FantasyPros'' then ''#309fdb''',
@@ -399,6 +398,8 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_axis=>'x'
 ,p_is_rendered=>'on'
 ,p_title=>'Week'
+,p_format_type=>'decimal'
+,p_decimal_places=>0
 ,p_format_scaling=>'auto'
 ,p_scaling=>'linear'
 ,p_baseline_scaling=>'zero'
@@ -626,6 +627,7 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_triggering_element_type=>'ITEM'
 ,p_triggering_element=>'P1_TEMPORADA'
 ,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'
 );
 wwv_flow_imp_page.create_page_da_action(
