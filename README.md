@@ -33,27 +33,27 @@ En "historico":
 
 ### Panel de control resumen temporada
 
-![Imagen panel control](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen1.png)
+![Imagen panel control](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen1.png?token=GHSAT0AAAAAAB5HNKFB7ATS6NQTUW3LUOGAY5335IQ)
 
 ### Jugadores por temporada
 
-![Imagen Jugadores por temporada](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen2.png)
+![Imagen Jugadores por temporada](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen2.png?token=GHSAT0AAAAAAB5HNKFBWFXJ43VU2AEUN3QCY5336OA)
 
 ### Carga proyecciones de cada proveedor pre-week
 
-![Imagen Carga proyecciones de cada proveedor pre-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen3.png)
+![Imagen Carga proyecciones de cada proveedor pre-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen3.png?token=GHSAT0AAAAAAB5HNKFAOQV6KJABRCPV4QFWY53366A)
 
 ### Relleno puntos Fanmtasy realizados post-week
 
-![Imagen Relleno puntos Fanmtasy realizados post-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen4.png)
+![Imagen Relleno puntos Fanmtasy realizados post-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen4.png?token=GHSAT0AAAAAAB5HNKFBSRY6RMXZ6CDXJCGOY5337EA)
 
 ### Consulta puntos totalizados por proveedor en week
 
-![Imagen Consulta puntos totalizados por proveedor en week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen5.png)
+![Imagen Consulta puntos totalizados por proveedor en week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen5.png?token=GHSAT0AAAAAAB5HNKFB7Z2M5ZET3RVD5OWYY5337LQ)
 
 ### Asignación puntos win por proveedor según resultados
 
-![Imagen Asignación puntos win por proveedor según resultados](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/master/screenshots/imagen6.png)
+![Imagen Asignación puntos win por proveedor según resultados](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen6.png?token=GHSAT0AAAAAAB5HNKFAD7VTTCZMX75ROVISY5337SA)
 
 
 
