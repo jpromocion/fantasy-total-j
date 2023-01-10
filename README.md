@@ -33,27 +33,27 @@ En "historico":
 
 ### Panel de control resumen temporada
 
-![Imagen panel control](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen1.png?token=GHSAT0AAAAAAB5HNKFB7ATS6NQTUW3LUOGAY5335IQ)
+![Imagen panel control](/screenshots/imagen1.png)
 
 ### Jugadores por temporada
 
-![Imagen Jugadores por temporada](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen2.png?token=GHSAT0AAAAAAB5HNKFBWFXJ43VU2AEUN3QCY5336OA)
+![Imagen Jugadores por temporada](/screenshots/imagen2.png)
 
 ### Carga proyecciones de cada proveedor pre-week
 
-![Imagen Carga proyecciones de cada proveedor pre-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen3.png?token=GHSAT0AAAAAAB5HNKFAOQV6KJABRCPV4QFWY53366A)
+![Imagen Carga proyecciones de cada proveedor pre-week](/screenshots/imagen3.png)
 
 ### Relleno puntos Fanmtasy realizados post-week
 
-![Imagen Relleno puntos Fanmtasy realizados post-week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen4.png?token=GHSAT0AAAAAAB5HNKFBSRY6RMXZ6CDXJCGOY5337EA)
+![Imagen Relleno puntos Fanmtasy realizados post-week](/screenshots/imagen4.png)
 
 ### Consulta puntos totalizados por proveedor en week
 
-![Imagen Consulta puntos totalizados por proveedor en week](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen5.png?token=GHSAT0AAAAAAB5HNKFB7Z2M5ZET3RVD5OWYY5337LQ)
+![Imagen Consulta puntos totalizados por proveedor en week](/screenshots/imagen5.png)
 
 ### Asignación puntos win por proveedor según resultados
 
-![Imagen Asignación puntos win por proveedor según resultados](https://raw.githubusercontent.com/jpromocion/fantasy-total-j/main/screenshots/imagen6.png?token=GHSAT0AAAAAAB5HNKFAD7VTTCZMX75ROVISY5337SA)
+![Imagen Asignación puntos win por proveedor según resultados](/screenshots/imagen6.png)
 
 
 
