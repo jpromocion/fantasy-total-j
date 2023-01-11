@@ -25,6 +25,15 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(8933747853306781)
+,p_list_item_display_sequence=>11
+,p_list_item_link_text=>unistr('Clasificaci\00F3n temporal')
+,p_list_item_link_target=>'f?p=&APP_ID.:5:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-area-chart'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'5'
+);
+wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17563486037252531)
 ,p_list_item_display_sequence=>20
 ,p_list_item_link_text=>'Jugadores temporada'

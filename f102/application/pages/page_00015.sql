@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20221117152331'
+,p_last_upd_yyyymmddhh24miss=>'20230111095943'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17818958079020011)
@@ -562,6 +562,30 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_sort_direction=>'ASC'
 ,p_sort_nulls=>'LAST'
 );
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(20203257081424104)
+,p_plug_name=>'Pre-carga'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(17069367738935144)
+,p_plug_display_sequence=>40
+,p_plug_new_grid_row=>false
+,p_plug_new_grid_column=>false
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(20203496017424106)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(20203257081424104)
+,p_button_name=>'PreCargaPosicion'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Pre Cargar'
+,p_grid_new_row=>'Y'
+);
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(17835142557029110)
 ,p_name=>'P15_TEMPORADA'
@@ -596,6 +620,32 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(20203373414424105)
+,p_name=>'P15_PROVEEDOR_CARGA'
+,p_is_required=>true
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(20203257081424104)
+,p_prompt=>'Proveedor Carga'
+,p_display_as=>'NATIVE_POPUP_LOV'
+,p_named_lov=>'FUENTES_POSIBLES'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select name, id',
+'from FANTASY_SUPPLIER',
+'order by id'))
+,p_lov_display_null=>'YES'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'POPUP'
+,p_attribute_02=>'FIRST_ROWSET'
+,p_attribute_03=>'N'
+,p_attribute_04=>'N'
+,p_attribute_05=>'Y'
+,p_attribute_06=>'0'
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18191709825270202)
@@ -637,6 +687,53 @@ wwv_flow_imp_page.create_page_process(
 ,p_attribute_06=>'Y'
 ,p_attribute_08=>'Y'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(20203558098424107)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Precarga posiciones proveedor'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE    ',
+'    idJugadorFijo_  FANTASY_PLAYER.ID%TYPE;',
+'',
+'    CURSOR cPosiciones IS ',
+'        SELECT ID, POSITION, NAME, VISUALORDER',
+'        FROM FANTASY_POSITION',
+'        ORDER BY VISUALORDER;',
+'BEGIN',
+'    --Cogemos un jugador cualquiera para insertarlo fijo, dado que es obligatorio',
+'    SELECT MIN(ID)',
+'    INTO idJugadorFijo_',
+'    FROM FANTASY_PLAYER',
+'    WHERE IDFANTASYSEASON = :P15_TEMPORADA;',
+'',
+'    <<recorrePosiciones>>',
+'    FOR rPosiciones IN cPosiciones LOOP',
+'        INSERT INTO FANTASY_PROYECTION(',
+'                IDFANTASYSEASON,',
+'                WEEK,',
+'                IDFANTASYSUPPLIER,',
+'                IDFANTASYPOSITION,',
+'                IDFANTASYPLAYER)',
+'        VALUES(',
+'                :P15_TEMPORADA,',
+'                :P15_SEMANA,',
+'                :P15_PROVEEDOR_CARGA,',
+'                rPosiciones.ID,',
+'                idJugadorFijo_',
+'        );',
+'    END LOOP recorrePosiciones;',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_process_error_message=>'Ha sucedido un error al precargar posiciones sobre el proveedor'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_imp.id(20203496017424106)
+,p_process_when=>'P15_PROVEEDOR_CARGA'
+,p_process_when_type=>'ITEM_IS_NOT_NULL'
+,p_process_success_message=>'Posiciones al proveedor pre-cargadas'
 );
 wwv_flow_imp.component_end;
 end;
