@@ -5,7 +5,7 @@ begin
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.2'
+,p_release=>'23.1.5'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'13'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20230109085645'
+,p_last_upd_yyyymmddhh24miss=>'20231030100104'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17202544383935283)
@@ -49,6 +49,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_sequence=>60
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_ajax_items_to_submit=>'P1_TEMPORADA'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18278115648614942)
@@ -145,6 +146,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_new_grid_row=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_ajax_items_to_submit=>'P1_TEMPORADA'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18278761619614948)
