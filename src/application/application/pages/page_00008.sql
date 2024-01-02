@@ -21,19 +21,20 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'23'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20221103124212'
+,p_last_upd_yyyymmddhh24miss=>'20240102120307'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17563816962252532)
 ,p_plug_name=>'Jugadores temporada'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(17040854231935129)
-,p_plug_display_sequence=>20
+,p_plug_display_sequence=>30
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select ',
 '    p.ID,',
 '    p.IDFANTASYSEASON,',
+'    p.IDFANTASYWORKTEAM,',
 '    p.NAME,',
 '    p.IDFANTASYPOSITION,',
 '    po.position as FANTASYPOSITION,',
@@ -51,10 +52,11 @@ wwv_flow_imp_page.create_page_plug(
 '    FANTASY_TEAM t',
 ' where p.IDFANTASYPOSITION = po.id',
 '    and p.idfantasyteam = t.id(+)',
-'    and p.idfantasyseason = :P8_TEMPORADA'))
+'    and p.idfantasyseason = :P8_TEMPORADA',
+'    and p.IDFANTASYWORKTEAM = :P8_EQUIPOFANTASY'))
 ,p_lazy_loading=>false
 ,p_plug_source_type=>'NATIVE_CARDS'
-,p_ajax_items_to_submit=>'P8_TEMPORADA'
+,p_ajax_items_to_submit=>'P8_TEMPORADA,P8_EQUIPOFANTASY'
 ,p_plug_query_num_rows_type=>'SCROLL'
 ,p_show_total_row_count=>false
 ,p_pagination_display_position=>'BOTTOM_RIGHT'
@@ -101,7 +103,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Crear'
-,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::P9_IDFANTASYSEASON:&P8_TEMPORADA.'
+,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::P9_IDFANTASYSEASON,P9_IDFANTASYWORKTEAM:&P8_TEMPORADA.,&P8_EQUIPOFANTASY.'
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -143,6 +145,25 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18475735286304844)
+,p_name=>'P8_EQUIPOFANTASY'
+,p_item_sequence=>20
+,p_prompt=>'Equipo Fantasy'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'EQUIPOS_FANTASY'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT workteam as display, id as value',
+'FROM FANTASY_WORKTEAM',
+'order by id asc'))
+,p_cHeight=>1
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(16356776380525115)
 ,p_computation_sequence=>10
@@ -150,6 +171,14 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_point=>'BEFORE_BOX_BODY'
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
+);
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(18466864983230815)
+,p_computation_sequence=>20
+,p_computation_item=>'P8_EQUIPOFANTASY'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'ITEM_VALUE'
+,p_computation=>'ID_EQUIPO_FANTASY_INICIO'
 );
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(16358214988525130)
@@ -176,7 +205,7 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_name=>'Refrescar cambio temporada'
 ,p_event_sequence=>20
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P8_TEMPORADA'
+,p_triggering_element=>'P8_TEMPORADA,P8_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'

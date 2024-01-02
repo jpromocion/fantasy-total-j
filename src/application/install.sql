@@ -22,6 +22,8 @@ prompt --install
 @@application/shared_components/security/app_access_control/reader.sql
 @@application/shared_components/navigation/navigation_bar.sql
 @@application/shared_components/logic/application_processes/carga_temporada_actual.sql
+@@application/shared_components/logic/application_processes/carga_equipo_fantasy_defecto.sql
+@@application/shared_components/logic/application_items/id_equipo_fantasy_inicio.sql
 @@application/shared_components/logic/application_items/id_temporada_actual.sql
 @@application/shared_components/logic/application_items/temporada_actual.sql
 @@application/shared_components/logic/application_settings.sql
@@ -30,6 +32,7 @@ prompt --install
 @@application/shared_components/user_interface/lovs/access_roles.sql
 @@application/shared_components/user_interface/lovs/email_username_format.sql
 @@application/shared_components/user_interface/lovs/equipos_existentes.sql
+@@application/shared_components/user_interface/lovs/equipos_fantasy.sql
 @@application/shared_components/user_interface/lovs/fuentes_posibles.sql
 @@application/shared_components/user_interface/lovs/posiciones_jugador.sql
 @@application/shared_components/user_interface/lovs/puntuacion_proveedor.sql
@@ -134,6 +137,8 @@ prompt --install
 @@application/pages/page_00015.sql
 @@application/pages/page_00016.sql
 @@application/pages/page_00018.sql
+@@application/pages/page_00019.sql
+@@application/pages/page_00020.sql
 @@application/pages/page_09999.sql
 @@application/pages/page_10000.sql
 @@application/pages/page_10010.sql
@@ -146,6 +151,7 @@ prompt --install
 @@application/deployment/install/install_01_carga_tablas.sql
 @@application/deployment/install/install_02_carga_triggers.sql
 @@application/deployment/install/install_03_carga_inserciones_base.sql
+@@application/deployment/install/install_delta_2_0_sql.sql
 @@application/deployment/checks.sql
 @@application/deployment/buildoptions.sql
 @@application/end_environment.sql

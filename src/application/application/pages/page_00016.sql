@@ -21,22 +21,23 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20221120104457'
+,p_last_upd_yyyymmddhh24miss=>'20240102123232'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18178191623255392)
 ,p_plug_name=>'Puntos Fantasy'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(17067238129935143)
-,p_plug_display_sequence=>30
+,p_plug_display_sequence=>40
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_POINT'
 ,p_query_where=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'idfantasyseason = :P16_TEMPORADA',
+'and IDFANTASYWORKTEAM = :P16_EQUIPOFANTASY',
 'and week = :P16_SEMANA'))
 ,p_include_rowid_column=>false
 ,p_plug_source_type=>'NATIVE_IG'
-,p_ajax_items_to_submit=>'P16_TEMPORADA,P16_SEMANA'
+,p_ajax_items_to_submit=>'P16_TEMPORADA,P16_SEMANA,P16_EQUIPOFANTASY'
 ,p_prn_page_header=>'Puntos Fantasy'
 );
 wwv_flow_imp_page.create_region_column(
@@ -119,7 +120,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_AUTO_COMPLETE'
 ,p_heading=>'Week'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>50
+,p_display_sequence=>60
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'EXACT_CASE'
 ,p_attribute_04=>'N'
@@ -138,7 +139,6 @@ wwv_flow_imp_page.create_region_column(
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
 ,p_include_in_export=>true
-,p_escape_on_http_output=>true
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(18183924829255397)
@@ -150,7 +150,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_POPUP_LOV'
 ,p_heading=>'Jugador'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>60
+,p_display_sequence=>70
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'POPUP'
 ,p_attribute_02=>'FIRST_ROWSET'
@@ -164,11 +164,12 @@ wwv_flow_imp_page.create_region_column(
 'select name as display, id as value',
 'from FANTASY_PLAYER',
 'where idfantasyseason = :IDFANTASYSEASON',
+'  and IDFANTASYWORKTEAM = :IDFANTASYWORKTEAM',
 'order by name'))
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
-,p_lov_cascade_parent_items=>'IDFANTASYSEASON'
-,p_ajax_items_to_submit=>'IDFANTASYSEASON'
+,p_lov_cascade_parent_items=>'IDFANTASYSEASON,IDFANTASYWORKTEAM'
+,p_ajax_items_to_submit=>'IDFANTASYSEASON,IDFANTASYWORKTEAM'
 ,p_ajax_optimize_refresh=>true
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -188,7 +189,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_NUMBER_FIELD'
 ,p_heading=>'Puntos Fantasy'
 ,p_heading_alignment=>'RIGHT'
-,p_display_sequence=>70
+,p_display_sequence=>80
 ,p_value_alignment=>'RIGHT'
 ,p_stretch=>'A'
 ,p_attribute_03=>'right'
@@ -219,7 +220,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>80
+,p_display_sequence=>90
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -238,7 +239,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>90
+,p_display_sequence=>100
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -257,7 +258,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>100
+,p_display_sequence=>110
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -276,7 +277,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>110
+,p_display_sequence=>120
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -285,6 +286,37 @@ wwv_flow_imp_page.create_region_column(
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(18467624908230823)
+,p_name=>'IDFANTASYWORKTEAM'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'IDFANTASYWORKTEAM'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Equipo Fantasy'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>50
+,p_value_alignment=>'LEFT'
+,p_is_required=>true
+,p_lov_type=>'SHARED'
+,p_lov_id=>wwv_flow_imp.id(18465272704229490)
+,p_lov_display_extra=>true
+,p_lov_display_null=>true
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_enable_hide=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_interactive_grid(
  p_id=>wwv_flow_imp.id(18178653500255393)
@@ -339,6 +371,7 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_column_id=>wwv_flow_imp.id(18179995852255393)
 ,p_is_visible=>true
 ,p_is_frozen=>true
+,p_width=>48.579999999999984
 );
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18181307920255395)
@@ -362,7 +395,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18183394489255396)
 ,p_view_id=>wwv_flow_imp.id(18179297731255393)
-,p_display_seq=>4
+,p_display_seq=>5
 ,p_column_id=>wwv_flow_imp.id(18182995133255396)
 ,p_is_visible=>false
 ,p_is_frozen=>false
@@ -373,7 +406,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18184310938255397)
 ,p_view_id=>wwv_flow_imp.id(18179297731255393)
-,p_display_seq=>5
+,p_display_seq=>6
 ,p_column_id=>wwv_flow_imp.id(18183924829255397)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -384,7 +417,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18185379455255397)
 ,p_view_id=>wwv_flow_imp.id(18179297731255393)
-,p_display_seq=>6
+,p_display_seq=>11
 ,p_column_id=>wwv_flow_imp.id(18184902648255397)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -421,6 +454,14 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(18506446323653070)
+,p_view_id=>wwv_flow_imp.id(18179297731255393)
+,p_display_seq=>4
+,p_column_id=>wwv_flow_imp.id(18467624908230823)
+,p_is_visible=>false
+,p_is_frozen=>false
+);
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18192203966277537)
 ,p_name=>'P16_TEMPORADA'
@@ -441,9 +482,28 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_02=>'N'
 );
 wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18503986023635814)
+,p_name=>'P16_EQUIPOFANTASY'
+,p_item_sequence=>20
+,p_prompt=>'Equipo Fantasy'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'EQUIPOS_FANTASY'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT workteam as display, id as value',
+'FROM FANTASY_WORKTEAM',
+'order by id asc'))
+,p_cHeight=>1
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18638837992372835)
 ,p_name=>'P16_SEMANA'
-,p_item_sequence=>20
+,p_item_sequence=>30
 ,p_prompt=>'Semana'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SEMANAS'
@@ -464,12 +524,20 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(18467544919230822)
+,p_computation_sequence=>20
+,p_computation_item=>'P16_EQUIPOFANTASY'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'ITEM_VALUE'
+,p_computation=>'ID_EQUIPO_FANTASY_INICIO'
+);
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(16359288446525140)
 ,p_name=>'Refrescar cambio temporada'
 ,p_event_sequence=>10
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P16_TEMPORADA,P16_SEMANA'
+,p_triggering_element=>'P16_TEMPORADA,P16_SEMANA,P16_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'

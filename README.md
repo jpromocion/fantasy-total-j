@@ -9,6 +9,9 @@ Se obtiene un resumen de puntuación fantasy de cada proveedor en esa semana, y 
 
 Tiene un dashboard de inicio de gráficos para resumir los datos principales, y consultar que proveedor es más fiable cada temporada.
 
+Versión 2:
+ * Incluido la posibilidad de funcionar con multi-equipos fantasy para trabajar varias ligas en la misma aplicación
+
 ## Requisitos
 
 Es una aplicación en Oracle APEX (Versión 22.1.6).
@@ -17,7 +20,7 @@ Se requiere al menos una Oracle 12c. Preparado para utilizarse con el Cloud Free
 
 Incluye PWA: optimizado para ver en movil, incluye la posibilidad de instalarlo en tu sistema como una aplicación.
 
-## Installation
+## Instalación
 
 Es una exportación de la aplicación APEX tal cual en carpeta "src/main/application":
  * Version descromida de la exportacion por zip ("Split into Multiple Files").

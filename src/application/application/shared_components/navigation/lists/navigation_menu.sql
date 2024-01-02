@@ -117,6 +117,16 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_for_pages=>'11'
 );
 wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(18449561904071621)
+,p_list_item_display_sequence=>100
+,p_list_item_link_text=>'Equipos Fantasy Jugador'
+,p_list_item_link_target=>'f?p=&APP_ID.:19:&APP_SESSION.::&DEBUG.:::'
+,p_list_item_icon=>'fa-users-alt'
+,p_parent_list_item_id=>wwv_flow_imp.id(17351266549251710)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'19,20'
+);
+wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17239342540935450)
 ,p_list_item_display_sequence=>10000
 ,p_list_item_link_text=>'Administration'

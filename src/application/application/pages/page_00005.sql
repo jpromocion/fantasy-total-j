@@ -19,9 +19,9 @@ wwv_flow_imp_page.create_page(
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
-,p_page_component_map=>'03'
-,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20230111110609'
+,p_page_component_map=>'18'
+,p_last_updated_by=>'JPROMOCION@GMAIL.COM'
+,p_last_upd_yyyymmddhh24miss=>'20240102130100'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(8934175664306786)
@@ -148,71 +148,127 @@ wwv_flow_imp_page.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-wwv_flow_imp_page.create_report_region(
+wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(20204122246424113)
-,p_name=>'Datos'
+,p_plug_name=>'Datos'
 ,p_parent_plug_id=>wwv_flow_imp.id(20206068357424132)
-,p_template=>wwv_flow_imp.id(17067238129935143)
-,p_display_sequence=>10
 ,p_region_template_options=>'#DEFAULT#'
-,p_component_template_options=>'#DEFAULT#:t-Report--altRowsDefault:t-Report--rowHighlight'
-,p_display_point=>'SUB_REGIONS'
-,p_source_type=>'NATIVE_SQL_REPORT'
+,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'SUB_REGIONS'
 ,p_query_type=>'SQL'
-,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select',
 '  FS.SEASON temporada,',
+'  wt.WORKTEAM equipo,',
 '  su.NAME proveedor,',
 '  SUM(FV.WINPOINT) puntos',
 'from',
 '  FANTASY_VALUE FV,',
 '  FANTASY_SEASON FS,',
-'  FANTASY_SUPPLIER su',
+'  FANTASY_SUPPLIER su,',
+'  FANTASY_WORKTEAM wt',
 'WHERE FV.IDFANTASYSEASON = FS.ID',
 '  AND FV.IDFANTASYSUPPLIER = su.ID',
-'GROUP BY su.NAME, FS.SEASON',
-'order by FS.SEASON desc, puntos desc'))
-,p_ajax_enabled=>'Y'
+'  AND FV.IDFANTASYWORKTEAM = wt.ID',
+'GROUP BY su.NAME, FS.SEASON, wt.WORKTEAM',
+'order by FS.SEASON desc, wt.WORKTEAM, puntos desc'))
+,p_plug_source_type=>'NATIVE_IR'
+,p_prn_content_disposition=>'ATTACHMENT'
+,p_prn_units=>'MILLIMETERS'
+,p_prn_paper_size=>'A4'
+,p_prn_width=>297
+,p_prn_height=>210
+,p_prn_orientation=>'HORIZONTAL'
+,p_prn_page_header=>'Datos'
+,p_prn_page_header_font_color=>'#000000'
+,p_prn_page_header_font_family=>'Helvetica'
+,p_prn_page_header_font_weight=>'normal'
+,p_prn_page_header_font_size=>'12'
+,p_prn_page_footer_font_color=>'#000000'
+,p_prn_page_footer_font_family=>'Helvetica'
+,p_prn_page_footer_font_weight=>'normal'
+,p_prn_page_footer_font_size=>'12'
+,p_prn_header_bg_color=>'#EEEEEE'
+,p_prn_header_font_color=>'#000000'
+,p_prn_header_font_family=>'Helvetica'
+,p_prn_header_font_weight=>'bold'
+,p_prn_header_font_size=>'10'
+,p_prn_body_bg_color=>'#FFFFFF'
+,p_prn_body_font_color=>'#000000'
+,p_prn_body_font_family=>'Helvetica'
+,p_prn_body_font_weight=>'normal'
+,p_prn_body_font_size=>'10'
+,p_prn_border_width=>.5
+,p_prn_page_header_alignment=>'CENTER'
+,p_prn_page_footer_alignment=>'CENTER'
+,p_prn_border_color=>'#666666'
+);
+wwv_flow_imp_page.create_worksheet(
+ p_id=>wwv_flow_imp.id(18468110369230828)
+,p_max_row_count=>'1000000'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
 ,p_lazy_loading=>false
-,p_query_row_template=>wwv_flow_imp.id(17125639701935174)
-,p_query_num_rows=>10
-,p_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_query_num_rows_type=>'ROW_RANGES_WITH_LINKS'
-,p_pagination_display_position=>'BOTTOM_RIGHT'
-,p_csv_output=>'N'
-,p_prn_output=>'N'
-,p_sort_null=>'L'
-,p_plug_query_strip_html=>'N'
+,p_show_detail_link=>'N'
+,p_show_notify=>'Y'
+,p_download_formats=>'CSV:HTML:XLSX:PDF'
+,p_enable_mail_download=>'Y'
+,p_owner=>'JORTRI'
+,p_internal_uid=>18468110369230828
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20206199155424133)
-,p_query_column_id=>1
-,p_column_alias=>'TEMPORADA'
-,p_column_display_sequence=>10
-,p_column_heading=>'Temporada'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468212221230829)
+,p_db_column_name=>'TEMPORADA'
+,p_display_order=>10
+,p_column_identifier=>'A'
+,p_column_label=>'Temporada'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20205000660424122)
-,p_query_column_id=>2
-,p_column_alias=>'PROVEEDOR'
-,p_column_display_sequence=>20
-,p_column_heading=>'Proveedor'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468318979230830)
+,p_db_column_name=>'EQUIPO'
+,p_display_order=>20
+,p_column_identifier=>'B'
+,p_column_label=>'Equipo'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20205118199424123)
-,p_query_column_id=>3
-,p_column_alias=>'PUNTOS'
-,p_column_display_sequence=>30
-,p_column_heading=>'Puntos'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468461575230831)
+,p_db_column_name=>'PROVEEDOR'
+,p_display_order=>30
+,p_column_identifier=>'C'
+,p_column_label=>'Proveedor'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468585483230832)
+,p_db_column_name=>'PUNTOS'
+,p_display_order=>40
+,p_column_identifier=>'D'
+,p_column_label=>'Puntos'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_rpt(
+ p_id=>wwv_flow_imp.id(18529877895826887)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'185299'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>10
+,p_report_columns=>'TEMPORADA:EQUIPO:PROVEEDOR:PUNTOS'
 );
 wwv_flow_imp_page.create_report_region(
  p_id=>wwv_flow_imp.id(20205604316424128)
@@ -390,75 +446,132 @@ wwv_flow_imp_page.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-wwv_flow_imp_page.create_report_region(
+wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(20205271408424124)
-,p_name=>'Datos'
+,p_plug_name=>'Datos'
 ,p_parent_plug_id=>wwv_flow_imp.id(20206281171424134)
-,p_template=>wwv_flow_imp.id(17067238129935143)
-,p_display_sequence=>10
 ,p_region_template_options=>'#DEFAULT#'
-,p_component_template_options=>'#DEFAULT#:t-Report--altRowsDefault:t-Report--rowHighlight'
-,p_display_point=>'SUB_REGIONS'
-,p_source_type=>'NATIVE_SQL_REPORT'
+,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'SUB_REGIONS'
 ,p_query_type=>'SQL'
-,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT',
 '  FS.SEASON temporada,',
+'  wt.WORKTEAM equipo,',
 '  SU.name proveedor,',
 '  SUM(PO.fantasypoints) puntos',
 'FROM',
 '  FANTASY_PROYECTION PR,',
 '  FANTASY_SUPPLIER SU,',
 '  FANTASY_SEASON FS,',
-'  FANTASY_POINT PO',
+'  FANTASY_POINT PO,',
+'  FANTASY_WORKTEAM wt',
 'WHERE PR.idfantasysupplier = SU.ID',
 '  AND PR.idfantasyseason = FS.ID',
 '  AND PR.idfantasyseason = PO.idfantasyseason',
+'  AND PR.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM',
 '  AND PR.week = Po.week',
 '  AND PR.idfantasyplayer = PO.idfantasyplayer',
-'GROUP BY SU.name, FS.SEASON',
-'order by FS.SEASON desc, puntos desc'))
-,p_ajax_enabled=>'Y'
+'  AND PR.IDFANTASYWORKTEAM = wt.ID',
+'GROUP BY SU.name, FS.SEASON, wt.WORKTEAM',
+'order by FS.SEASON desc, wt.WORKTEAM, puntos desc'))
+,p_plug_source_type=>'NATIVE_IR'
+,p_prn_content_disposition=>'ATTACHMENT'
+,p_prn_units=>'MILLIMETERS'
+,p_prn_paper_size=>'A4'
+,p_prn_width=>297
+,p_prn_height=>210
+,p_prn_orientation=>'HORIZONTAL'
+,p_prn_page_header=>'Datos'
+,p_prn_page_header_font_color=>'#000000'
+,p_prn_page_header_font_family=>'Helvetica'
+,p_prn_page_header_font_weight=>'normal'
+,p_prn_page_header_font_size=>'12'
+,p_prn_page_footer_font_color=>'#000000'
+,p_prn_page_footer_font_family=>'Helvetica'
+,p_prn_page_footer_font_weight=>'normal'
+,p_prn_page_footer_font_size=>'12'
+,p_prn_header_bg_color=>'#EEEEEE'
+,p_prn_header_font_color=>'#000000'
+,p_prn_header_font_family=>'Helvetica'
+,p_prn_header_font_weight=>'bold'
+,p_prn_header_font_size=>'10'
+,p_prn_body_bg_color=>'#FFFFFF'
+,p_prn_body_font_color=>'#000000'
+,p_prn_body_font_family=>'Helvetica'
+,p_prn_body_font_weight=>'normal'
+,p_prn_body_font_size=>'10'
+,p_prn_border_width=>.5
+,p_prn_page_header_alignment=>'CENTER'
+,p_prn_page_footer_alignment=>'CENTER'
+,p_prn_border_color=>'#666666'
+);
+wwv_flow_imp_page.create_worksheet(
+ p_id=>wwv_flow_imp.id(18468707870230834)
+,p_max_row_count=>'1000000'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
 ,p_lazy_loading=>false
-,p_query_row_template=>wwv_flow_imp.id(17125639701935174)
-,p_query_num_rows=>10
-,p_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_query_num_rows_type=>'ROW_RANGES_WITH_LINKS'
-,p_pagination_display_position=>'BOTTOM_RIGHT'
-,p_csv_output=>'N'
-,p_prn_output=>'N'
-,p_sort_null=>'L'
-,p_plug_query_strip_html=>'N'
+,p_show_detail_link=>'N'
+,p_show_notify=>'Y'
+,p_download_formats=>'CSV:HTML:XLSX:PDF'
+,p_enable_mail_download=>'Y'
+,p_owner=>'JORTRI'
+,p_internal_uid=>18468707870230834
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20205360500424125)
-,p_query_column_id=>1
-,p_column_alias=>'TEMPORADA'
-,p_column_display_sequence=>10
-,p_column_heading=>'Temporada'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468816381230835)
+,p_db_column_name=>'TEMPORADA'
+,p_display_order=>10
+,p_column_identifier=>'A'
+,p_column_label=>'Temporada'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20205410377424126)
-,p_query_column_id=>2
-,p_column_alias=>'PROVEEDOR'
-,p_column_display_sequence=>20
-,p_column_heading=>'Proveedor'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18468942823230836)
+,p_db_column_name=>'EQUIPO'
+,p_display_order=>20
+,p_column_identifier=>'B'
+,p_column_label=>'Equipo'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
 );
-wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(20205559099424127)
-,p_query_column_id=>3
-,p_column_alias=>'PUNTOS'
-,p_column_display_sequence=>30
-,p_column_heading=>'Puntos'
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18469006204230837)
+,p_db_column_name=>'PROVEEDOR'
+,p_display_order=>30
+,p_column_identifier=>'C'
+,p_column_label=>'Proveedor'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
 ,p_use_as_row_header=>'N'
-,p_derived_column=>'N'
-,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18469127297230838)
+,p_db_column_name=>'PUNTOS'
+,p_display_order=>40
+,p_column_identifier=>'D'
+,p_column_label=>'Puntos'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_rpt(
+ p_id=>wwv_flow_imp.id(18533974178857845)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'185340'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>10
+,p_report_columns=>'TEMPORADA:EQUIPO:PROVEEDOR:PUNTOS'
 );
 wwv_flow_imp_page.create_report_region(
  p_id=>wwv_flow_imp.id(20206353767424135)
@@ -482,6 +595,7 @@ wwv_flow_imp_page.create_report_region(
 '  FANTASY_POINT PO',
 'WHERE PR.idfantasysupplier = SU.ID',
 '  AND PR.idfantasyseason = PO.idfantasyseason',
+'  AND PR.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM',
 '  AND PR.week = Po.week',
 '  AND PR.idfantasyplayer = PO.idfantasyplayer',
 'GROUP BY SU.name',

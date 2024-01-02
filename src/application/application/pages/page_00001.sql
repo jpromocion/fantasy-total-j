@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'13'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20231030100104'
+,p_last_upd_yyyymmddhh24miss=>'20240102113724'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17202544383935283)
@@ -32,7 +32,8 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_point=>'REGION_POSITION_01'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '<b>Temporada actual: </b>&TEMPORADA_ACTUAL. <br>',
-'<b>Id temporada actual: </b>&ID_TEMPORADA_ACTUAL.'))
+'<b>Id temporada actual: </b>&ID_TEMPORADA_ACTUAL. <br>',
+'<b>Id equipo defecto: </b>&ID_EQUIPO_FANTASY_INICIO.'))
 ,p_plug_query_num_rows=>15
 ,p_region_image=>'#APP_FILES#icons/app-icon-512.png'
 ,p_attribute_01=>'N'
@@ -46,10 +47,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>70
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18278115648614942)
@@ -91,9 +92,11 @@ wwv_flow_imp_page.create_jet_chart_series(
 '    FANTASY_PROYECTION PR,',
 '    FANTASY_POINT PO',
 '  WHERE PR.idfantasyseason = PO.idfantasyseason',
+'    and PR.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM',
 '    AND PR.week = Po.week',
 '    AND PR.idfantasyplayer = PO.idfantasyplayer',
 '    AND PR.idfantasyseason = :P1_TEMPORADA',
+'    AND PR.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 '  GROUP BY PR.idfantasyseason, PR.week, PR.IDFANTASYPOSITION',
 '  ) S,',
 '  FANTASY_POSITION POS',
@@ -142,11 +145,11 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>70
+,p_plug_display_sequence=>80
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_new_grid_row=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18278761619614948)
@@ -183,6 +186,7 @@ wwv_flow_imp_page.create_jet_chart_series(
 '  FANTASY_PLAYER PL',
 'WHERE PO.IDFANTASYPLAYER = PL.id',
 '  AND PO.IDFANTASYSEASON = :P1_TEMPORADA',
+'  AND PO.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 'GROUP BY PL.NAME',
 'ORDER BY puntos desc'))
 ,p_items_value_column_name=>'PUNTOS'
@@ -198,10 +202,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>80
+,p_plug_display_sequence=>90
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18795676732040504)
@@ -243,7 +247,9 @@ wwv_flow_imp_page.create_jet_chart_series(
 '      from FANTASY_POINT PO',
 '      where PL.id = PO.IDFANTASYPLAYER(+)',
 '        AND w.week = PO.WEEK(+)',
-'        AND PO.IDFANTASYSEASON = :P1_TEMPORADA),',
+'        AND PO.IDFANTASYSEASON = :P1_TEMPORADA',
+'        AND PO.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
+'      ),',
 '      0)',
 '  ) AS PUNTOS',
 'FROM',
@@ -254,6 +260,7 @@ wwv_flow_imp_page.create_jet_chart_series(
 '  ) w,',
 '  FANTASY_PLAYER PL',
 'WHERE pl.IDFANTASYSEASON = :P1_TEMPORADA',
+'  and pl.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 'GROUP BY w.week, PL.NAME',
 'ORDER BY w.week, PL.NAME'))
 ,p_max_row_count=>999999999999999999
@@ -303,10 +310,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>30
+,p_plug_display_sequence=>40
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18797189605040519)
@@ -362,9 +369,11 @@ wwv_flow_imp_page.create_jet_chart_series(
 '  FANTASY_POINT PO',
 'WHERE PR.idfantasysupplier = SU.ID',
 '  AND PR.idfantasyseason = PO.idfantasyseason',
+'  AND PR.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM',
 '  AND PR.week = Po.week',
 '  AND PR.idfantasyplayer = PO.idfantasyplayer',
 '  AND PR.idfantasyseason = :P1_TEMPORADA  ',
+'  AND PR.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 'GROUP BY SU.name, SU.VISUALORDER, PR.week',
 'order by PR.week, SU.VISUALORDER'))
 ,p_max_row_count=>9999999999999999
@@ -411,9 +420,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Win')
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>40
+,p_plug_display_sequence=>50
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18360274968955813)
@@ -476,6 +485,7 @@ wwv_flow_imp_page.create_jet_chart_series(
 '  FANTASY_VALUE VA',
 'WHERE va.IDFANTASYSUPPLIER = su.id',
 '  AND va.idfantasyseason = :P1_TEMPORADA',
+'  AND VA.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 'GROUP BY SU.name',
 'ORDER BY PUNTOSWIN DESC'))
 ,p_max_row_count=>9999999999999
@@ -491,10 +501,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Fantasy')
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>50
+,p_plug_display_sequence=>60
 ,p_plug_new_grid_row=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_ajax_items_to_submit=>'P1_TEMPORADA'
+,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
 wwv_flow_imp_page.create_jet_chart(
  p_id=>wwv_flow_imp.id(18361632401956762)
@@ -544,9 +554,11 @@ wwv_flow_imp_page.create_jet_chart_series(
 '  FANTASY_POINT PO',
 'WHERE PR.idfantasysupplier = SU.ID',
 '  AND PR.idfantasyseason = PO.idfantasyseason',
+'  AND PR.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM',
 '  AND PR.week = Po.week',
 '  AND PR.idfantasyplayer = PO.idfantasyplayer',
 '  AND PR.idfantasyseason = :P1_TEMPORADA',
+'  AND PR.IDFANTASYWORKTEAM = :P1_EQUIPOFANTASY',
 'GROUP BY SU.name',
 'order by puntos desc'))
 ,p_max_row_count=>99999999999999
@@ -589,6 +601,25 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_tick_label_position=>'outside'
 );
 wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18465410937230801)
+,p_name=>'P1_EQUIPOFANTASY'
+,p_item_sequence=>20
+,p_prompt=>'Equipo Fantasy'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'EQUIPOS_FANTASY'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT workteam as display, id as value',
+'FROM FANTASY_WORKTEAM',
+'order by id asc'))
+,p_cHeight=>1
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18725562129229107)
 ,p_name=>'P1_TEMPORADA'
 ,p_item_sequence=>10
@@ -615,12 +646,20 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(18466762269230814)
+,p_computation_sequence=>20
+,p_computation_item=>'P1_EQUIPOFANTASY'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'ITEM_VALUE'
+,p_computation=>'ID_EQUIPO_FANTASY_INICIO'
+);
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(18475526912716434)
 ,p_name=>'Refrescar Grafico 1'
 ,p_event_sequence=>10
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P1_TEMPORADA'
+,p_triggering_element=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'

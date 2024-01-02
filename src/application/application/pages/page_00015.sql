@@ -21,19 +21,20 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20230111095943'
+,p_last_upd_yyyymmddhh24miss=>'20240102123710'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17818958079020011)
 ,p_plug_name=>'Proyecciones'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(17067238129935143)
-,p_plug_display_sequence=>30
+,p_plug_display_sequence=>60
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select',
 '  pr.ID,',
 '  pr.IDFANTASYSEASON,',
+'  pr.IDFANTASYWORKTEAM,',
 '  pr.WEEK,',
 '  pr.IDFANTASYSUPPLIER,',
 '  pr.IDFANTASYPOSITION,',
@@ -46,9 +47,10 @@ wwv_flow_imp_page.create_page_plug(
 '  (select pos.VISUALORDER from FANTASY_POSITION pos where pos.id = pr.IDFANTASYPOSITION) as VISUALORDERPLAYER',
 'from FANTASY_PROYECTION pr',
 'where pr.idfantasyseason = :P15_TEMPORADA',
+'  and pr.IDFANTASYWORKTEAM = :P15_EQUIPOFANTASY',
 '  and pr.week = :P15_SEMANA'))
 ,p_plug_source_type=>'NATIVE_IG'
-,p_ajax_items_to_submit=>'P15_TEMPORADA,P15_SEMANA'
+,p_ajax_items_to_submit=>'P15_TEMPORADA,P15_SEMANA,P15_EQUIPOFANTASY'
 ,p_prn_page_header=>'Proyecciones'
 );
 wwv_flow_imp_page.create_region_column(
@@ -131,7 +133,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_AUTO_COMPLETE'
 ,p_heading=>'Week'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>50
+,p_display_sequence=>60
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'EXACT_CASE'
 ,p_attribute_04=>'N'
@@ -150,7 +152,6 @@ wwv_flow_imp_page.create_region_column(
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
 ,p_include_in_export=>true
-,p_escape_on_http_output=>true
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(17824718850020018)
@@ -162,7 +163,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_POPUP_LOV'
 ,p_heading=>unistr('P\00E1gina')
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>60
+,p_display_sequence=>70
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'POPUP'
 ,p_attribute_02=>'FIRST_ROWSET'
@@ -199,7 +200,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_POPUP_LOV'
 ,p_heading=>unistr('Posici\00F3n')
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>70
+,p_display_sequence=>80
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'POPUP'
 ,p_attribute_02=>'FIRST_ROWSET'
@@ -236,7 +237,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_POPUP_LOV'
 ,p_heading=>'Jugador'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>80
+,p_display_sequence=>90
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'POPUP'
 ,p_attribute_02=>'FIRST_ROWSET'
@@ -250,11 +251,12 @@ wwv_flow_imp_page.create_region_column(
 'select name as display, id as value',
 'from FANTASY_PLAYER',
 'where idfantasyseason = :IDFANTASYSEASON',
+'  and IDFANTASYWORKTEAM = :IDFANTASYWORKTEAM',
 'order by name'))
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
-,p_lov_cascade_parent_items=>'IDFANTASYSEASON'
-,p_ajax_items_to_submit=>'IDFANTASYSEASON'
+,p_lov_cascade_parent_items=>'IDFANTASYSEASON,IDFANTASYWORKTEAM'
+,p_ajax_items_to_submit=>'IDFANTASYSEASON,IDFANTASYWORKTEAM'
 ,p_ajax_optimize_refresh=>true
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -273,7 +275,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>110
+,p_display_sequence=>120
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -292,7 +294,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>120
+,p_display_sequence=>130
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -311,7 +313,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>130
+,p_display_sequence=>140
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -330,7 +332,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>140
+,p_display_sequence=>150
 ,p_attribute_01=>'Y'
 ,p_filter_is_required=>false
 ,p_use_as_row_header=>false
@@ -339,6 +341,37 @@ wwv_flow_imp_page.create_region_column(
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(18467358660230820)
+,p_name=>'IDFANTASYWORKTEAM'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'IDFANTASYWORKTEAM'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Equipo Fantasy'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>50
+,p_value_alignment=>'LEFT'
+,p_is_required=>true
+,p_lov_type=>'SHARED'
+,p_lov_id=>wwv_flow_imp.id(18465272704229490)
+,p_lov_display_extra=>true
+,p_lov_display_null=>true
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_enable_hide=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(18472566352716404)
@@ -350,7 +383,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_NUMBER_FIELD'
 ,p_heading=>'Orden posicion'
 ,p_heading_alignment=>'RIGHT'
-,p_display_sequence=>100
+,p_display_sequence=>110
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_03=>'right'
 ,p_attribute_04=>'text'
@@ -377,7 +410,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_NUMBER_FIELD'
 ,p_heading=>unistr('Orden p\00E1gina')
 ,p_heading_alignment=>'RIGHT'
-,p_display_sequence=>90
+,p_display_sequence=>100
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_03=>'right'
 ,p_attribute_04=>'text'
@@ -448,6 +481,7 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_column_id=>wwv_flow_imp.id(17820738288020014)
 ,p_is_visible=>true
 ,p_is_frozen=>true
+,p_width=>70.15100000000001
 );
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(17822171937020017)
@@ -540,6 +574,14 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(18490373693534670)
+,p_view_id=>wwv_flow_imp.id(17820064601020013)
+,p_display_seq=>14
+,p_column_id=>wwv_flow_imp.id(18467358660230820)
+,p_is_visible=>false
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18599933877315509)
 ,p_view_id=>wwv_flow_imp.id(17820064601020013)
 ,p_display_seq=>12
@@ -566,7 +608,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Pre-carga'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>40
+,p_plug_display_sequence=>70
 ,p_plug_new_grid_row=>false
 ,p_plug_new_grid_column=>false
 ,p_attribute_01=>'N'
@@ -604,9 +646,37 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_02=>'N'
 );
 wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18467433558230821)
+,p_name=>'P15_EQUIPOFANTASY_PRECARGA'
+,p_item_sequence=>20
+,p_display_as=>'NATIVE_HIDDEN'
+,p_warn_on_unsaved_changes=>'I'
+,p_attribute_01=>'Y'
+,p_item_comment=>'Al precargar como hace submit... se carga los combos de nuevo... utilizamos este valor para dejar guardado el de antes de la precarga de forma que vuelva a cargarse los del mismo equipo fantasy'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18487437064518397)
+,p_name=>'P15_EQUIPOFANTASY'
+,p_item_sequence=>30
+,p_prompt=>'Equipo Fantasy'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'EQUIPOS_FANTASY'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT workteam as display, id as value',
+'FROM FANTASY_WORKTEAM',
+'order by id asc'))
+,p_cHeight=>1
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18620025279339033)
 ,p_name=>'P15_SEMANA'
-,p_item_sequence=>20
+,p_item_sequence=>50
 ,p_prompt=>'Semana'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SEMANAS'
@@ -653,12 +723,32 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(18467276091230819)
+,p_computation_sequence=>20
+,p_computation_item=>'P15_EQUIPOFANTASY'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation_language=>'PLSQL'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'    devolver NUMBER;',
+'BEGIN',
+'    IF :P15_EQUIPOFANTASY_PRECARGA IS NULL THEN',
+'        RETURN :ID_EQUIPO_FANTASY_INICIO;',
+'    ELSE',
+'        devolver := :P15_EQUIPOFANTASY_PRECARGA;',
+'        :P15_EQUIPOFANTASY_PRECARGA := NULL;',
+'        RETURN devolver;',
+'    END IF;',
+'END;'))
+);
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(17835390594036050)
 ,p_name=>'Refrescar cambio temporada'
 ,p_event_sequence=>10
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P15_TEMPORADA,P15_SEMANA'
+,p_triggering_element=>'P15_TEMPORADA,P15_SEMANA,P15_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'
@@ -706,7 +796,8 @@ wwv_flow_imp_page.create_page_process(
 '    SELECT MIN(ID)',
 '    INTO idJugadorFijo_',
 '    FROM FANTASY_PLAYER',
-'    WHERE IDFANTASYSEASON = :P15_TEMPORADA;',
+'    WHERE IDFANTASYSEASON = :P15_TEMPORADA',
+'      and IDFANTASYWORKTEAM = :P15_EQUIPOFANTASY;',
 '',
 '    <<recorrePosiciones>>',
 '    FOR rPosiciones IN cPosiciones LOOP',
@@ -715,15 +806,19 @@ wwv_flow_imp_page.create_page_process(
 '                WEEK,',
 '                IDFANTASYSUPPLIER,',
 '                IDFANTASYPOSITION,',
-'                IDFANTASYPLAYER)',
+'                IDFANTASYPLAYER,',
+'                IDFANTASYWORKTEAM)',
 '        VALUES(',
 '                :P15_TEMPORADA,',
 '                :P15_SEMANA,',
 '                :P15_PROVEEDOR_CARGA,',
 '                rPosiciones.ID,',
-'                idJugadorFijo_',
+'                idJugadorFijo_,',
+'                :P15_EQUIPOFANTASY',
 '        );',
 '    END LOOP recorrePosiciones;',
+'',
+'    :P15_EQUIPOFANTASY_PRECARGA := :P15_EQUIPOFANTASY;',
 '',
 'END;'))
 ,p_process_clob_language=>'PLSQL'

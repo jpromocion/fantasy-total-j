@@ -21,14 +21,14 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'18'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20221213122829'
+,p_last_upd_yyyymmddhh24miss=>'20240102124834'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840528635767285)
 ,p_plug_name=>unistr('Puntuaci\00F3n en semana')
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>90
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
@@ -48,6 +48,7 @@ wwv_flow_imp_page.create_page_plug(
 '  py.id as idfantasyproyection,',
 '  po.id as idfantasypoint,',
 '  PY.idfantasyseason,',
+'  PY.IDFANTASYWORKTEAM,',
 '  PY.week,',
 '  PY.idfantasysupplier,',
 '  SU.visualorder AS ORDENPROVEEDOR,',
@@ -66,6 +67,7 @@ wwv_flow_imp_page.create_page_plug(
 '  FANTASY_PLAYER PL,',
 '  FANTASY_TEAM TM',
 'WHERE PY.idfantasyseason = PO.idfantasyseason(+)',
+'  AND PY.IDFANTASYWORKTEAM = PO.IDFANTASYWORKTEAM(+)',
 '  AND PY.week = PO.week(+)',
 '  AND PY.idfantasyplayer = PO.idfantasyplayer(+)',
 '  AND PY.idfantasyposition = POS.id',
@@ -73,10 +75,37 @@ wwv_flow_imp_page.create_page_plug(
 '  AND PY.idfantasyplayer = PL.id(+)',
 '  AND PL.idfantasyteam = TM.id(+)',
 '  AND PY.idfantasyseason = :P18_TEMPORADA',
+'  AND PY.IDFANTASYWORKTEAM = :P18_EQUIPOFANTASY',
 '  AND PY.week = :P18_SEMANA'))
 ,p_plug_source_type=>'NATIVE_IG'
-,p_ajax_items_to_submit=>'P18_TEMPORADA,P18_SEMANA'
+,p_ajax_items_to_submit=>'P18_TEMPORADA,P18_SEMANA,P18_EQUIPOFANTASY'
 ,p_prn_page_header=>'Resumen Semanal'
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(18467954666230826)
+,p_name=>'IDFANTASYWORKTEAM'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'IDFANTASYWORKTEAM'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_NUMBER_FIELD'
+,p_heading=>'Idfantasyworkteam'
+,p_heading_alignment=>'RIGHT'
+,p_display_sequence=>40
+,p_value_alignment=>'RIGHT'
+,p_attribute_03=>'left'
+,p_attribute_04=>'decimal'
+,p_is_required=>true
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_enable_hide=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(34924868415677515)
@@ -105,7 +134,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_NUMBER_FIELD'
 ,p_heading=>'Ordenproveedor'
 ,p_heading_alignment=>'RIGHT'
-,p_display_sequence=>60
+,p_display_sequence=>70
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_03=>'right'
 ,p_attribute_04=>'text'
@@ -131,7 +160,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_NUMBER_FIELD'
 ,p_heading=>'Ordenposicion'
 ,p_heading_alignment=>'RIGHT'
-,p_display_sequence=>80
+,p_display_sequence=>90
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_03=>'right'
 ,p_attribute_04=>'text'
@@ -256,7 +285,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Week'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>40
+,p_display_sequence=>50
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>true
 ,p_lov_type=>'SHARED'
@@ -288,7 +317,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Proveedor'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>50
+,p_display_sequence=>60
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>true
 ,p_lov_type=>'SHARED'
@@ -320,7 +349,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>unistr('Posici\00F3n')
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>70
+,p_display_sequence=>80
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>true
 ,p_lov_type=>'SHARED'
@@ -352,7 +381,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Jugador'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>100
+,p_display_sequence=>110
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>true
 ,p_lov_type=>'SQL_QUERY'
@@ -418,7 +447,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>90
+,p_display_sequence=>100
 ,p_value_alignment=>'LEFT'
 ,p_attribute_01=>'<img src="&URLFOTOJUGADOR." height="20" width="20"/>'
 ,p_use_as_row_header=>false
@@ -468,9 +497,17 @@ wwv_flow_imp_page.create_ig_report_view(
 ,p_edit_mode=>false
 );
 wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(18518840866746787)
+,p_view_id=>wwv_flow_imp.id(36791547625580619)
+,p_display_seq=>3
+,p_column_id=>wwv_flow_imp.id(18467954666230826)
+,p_is_visible=>false
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18570057043185996)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>12
+,p_display_seq=>13
 ,p_column_id=>wwv_flow_imp.id(34925005952677516)
 ,p_is_visible=>false
 ,p_is_frozen=>false
@@ -481,7 +518,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18571333238185999)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>13
+,p_display_seq=>14
 ,p_column_id=>wwv_flow_imp.id(34925103400677517)
 ,p_is_visible=>false
 ,p_is_frozen=>false
@@ -492,7 +529,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18572717225186003)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>10
+,p_display_seq=>11
 ,p_column_id=>wwv_flow_imp.id(34925162205677518)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -500,7 +537,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18576639323177635)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>6
+,p_display_seq=>7
 ,p_column_id=>wwv_flow_imp.id(36839033432767270)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -528,7 +565,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36794163186580622)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>3
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_imp.id(36793814422580621)
 ,p_is_visible=>false
 ,p_is_frozen=>false
@@ -539,7 +576,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36795138963580622)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>4
+,p_display_seq=>5
 ,p_column_id=>wwv_flow_imp.id(36794795535580622)
 ,p_is_visible=>false
 ,p_is_frozen=>false
@@ -551,7 +588,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36796213135580623)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>5
+,p_display_seq=>6
 ,p_column_id=>wwv_flow_imp.id(36795759918580623)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -559,7 +596,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36797169960580624)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>7
+,p_display_seq=>9
 ,p_column_id=>wwv_flow_imp.id(36796775213580623)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -567,7 +604,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36798128267580625)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>11
+,p_display_seq=>12
 ,p_column_id=>wwv_flow_imp.id(36797809722580624)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -583,7 +620,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(36831566064728777)
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
-,p_display_seq=>9
+,p_display_seq=>10
 ,p_column_id=>wwv_flow_imp.id(34925250906677519)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -602,7 +639,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Proveedor (puntuaciones)'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>70
+,p_plug_display_sequence=>100
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_new_grid_row=>false
 ,p_plug_new_grid_column=>false
@@ -622,6 +659,7 @@ wwv_flow_imp_page.create_page_plug(
 'SELECT',
 '  va.id,',
 '  va.idfantasyseason,',
+'  va.IDFANTASYWORKTEAM,',
 '  va.week,',
 '  va.idfantasysupplier,',
 '  su.name as namesupplier,',
@@ -631,10 +669,11 @@ wwv_flow_imp_page.create_page_plug(
 '  FANTASY_SUPPLIER su',
 'where va.idfantasysupplier = su.id',
 '  and va.idfantasyseason = :P18_TEMPORADA',
+'  and va.IDFANTASYWORKTEAM = :P18_EQUIPOFANTASY',
 '  and va.week = :P18_SEMANA',
-'order by va.idfantasyseason, va.week, su.visualorder'))
+'order by va.idfantasyseason, va.IDFANTASYWORKTEAM, va.week, su.visualorder'))
 ,p_plug_source_type=>'NATIVE_IR'
-,p_ajax_items_to_submit=>'P18_TEMPORADA,P18_SEMANA'
+,p_ajax_items_to_submit=>'P18_TEMPORADA,P18_SEMANA,P18_EQUIPOFANTASY'
 ,p_prn_content_disposition=>'ATTACHMENT'
 ,p_prn_units=>'MILLIMETERS'
 ,p_prn_paper_size=>'A4'
@@ -703,9 +742,20 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(18467835581230825)
+,p_db_column_name=>'IDFANTASYWORKTEAM'
+,p_display_order=>30
+,p_column_identifier=>'H'
+,p_column_label=>'Idfantasyworkteam'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(18473006411716409)
 ,p_db_column_name=>'WEEK'
-,p_display_order=>30
+,p_display_order=>40
 ,p_column_identifier=>'C'
 ,p_column_label=>'Week'
 ,p_column_type=>'NUMBER'
@@ -715,7 +765,7 @@ wwv_flow_imp_page.create_worksheet_column(
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(18473163617716410)
 ,p_db_column_name=>'IDFANTASYSUPPLIER'
-,p_display_order=>40
+,p_display_order=>50
 ,p_column_identifier=>'D'
 ,p_column_label=>'Idfantasysupplier'
 ,p_column_type=>'NUMBER'
@@ -725,7 +775,7 @@ wwv_flow_imp_page.create_worksheet_column(
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(18473236382716411)
 ,p_db_column_name=>'NAMESUPPLIER'
-,p_display_order=>50
+,p_display_order=>60
 ,p_column_identifier=>'E'
 ,p_column_label=>'Namesupplier'
 ,p_column_type=>'STRING'
@@ -734,7 +784,7 @@ wwv_flow_imp_page.create_worksheet_column(
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(18473341426716412)
 ,p_db_column_name=>'WINPOINT'
-,p_display_order=>60
+,p_display_order=>70
 ,p_column_identifier=>'F'
 ,p_column_label=>'Winpoint'
 ,p_column_type=>'NUMBER'
@@ -744,7 +794,7 @@ wwv_flow_imp_page.create_worksheet_column(
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(18473431876716413)
 ,p_db_column_name=>'DEL'
-,p_display_order=>70
+,p_display_order=>80
 ,p_column_identifier=>'G'
 ,p_column_label=>'Borrar'
 ,p_column_link=>'javascript:void(null);'
@@ -827,7 +877,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Regiones'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>50
+,p_plug_display_sequence=>80
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_DISPLAY_SELECTOR'
 ,p_attribute_01=>'STANDARD'
@@ -851,10 +901,38 @@ wwv_flow_imp_page.create_page_button(
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18473512679716414)
 ,p_name=>'P18_ID_BORRADO'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18512655015724336)
+,p_name=>'P18_EQUIPOFANTASY'
+,p_item_sequence=>40
+,p_prompt=>'Equipo Fantasy'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'EQUIPOS_FANTASY'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT workteam as display, id as value',
+'FROM FANTASY_WORKTEAM',
+'order by id asc'))
+,p_cHeight=>1
+,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18522837972770453)
+,p_name=>'P18_EQUIPOFANTASY_PRECARGA'
+,p_item_sequence=>30
+,p_display_as=>'NATIVE_HIDDEN'
+,p_warn_on_unsaved_changes=>'I'
+,p_attribute_01=>'Y'
+,p_item_comment=>'Al precargar como hace submit... se carga los combos de nuevo... utilizamos este valor para dejar guardado el de antes de la precarga de forma que vuelva a cargarse los del mismo equipo fantasy'
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18576202072152429)
@@ -920,7 +998,7 @@ wwv_flow_imp_page.create_page_item(
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18577746134152440)
 ,p_name=>'P18_SEMANA'
-,p_item_sequence=>30
+,p_item_sequence=>50
 ,p_prompt=>'Semana'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SEMANAS'
@@ -941,12 +1019,32 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(18467730066230824)
+,p_computation_sequence=>20
+,p_computation_item=>'P18_EQUIPOFANTASY'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation_language=>'PLSQL'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'    devolver NUMBER;',
+'BEGIN',
+'    IF :P18_EQUIPOFANTASY_PRECARGA IS NULL THEN',
+'        RETURN :ID_EQUIPO_FANTASY_INICIO;',
+'    ELSE',
+'        devolver := :P18_EQUIPOFANTASY_PRECARGA;',
+'        :P18_EQUIPOFANTASY_PRECARGA := NULL;',
+'        RETURN devolver;',
+'    END IF;',
+'END;'))
+);
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(18579835934152447)
 ,p_name=>'Refrescar semanal cambio temporada semana'
 ,p_event_sequence=>10
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P18_TEMPORADA,P18_SEMANA'
+,p_triggering_element=>'P18_TEMPORADA,P18_SEMANA,P18_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'
@@ -966,10 +1064,22 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_name=>'Refrescar proveedor cambio temporada semana'
 ,p_event_sequence=>20
 ,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P18_TEMPORADA,P18_SEMANA'
+,p_triggering_element=>'P18_TEMPORADA,P18_SEMANA,P18_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'
+);
+wwv_flow_imp.component_end;
+end;
+/
+begin
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.04.28'
+,p_release=>'23.1.5'
+,p_default_workspace_id=>7231611737995830
+,p_default_application_id=>102
+,p_default_id_offset=>0
+,p_default_owner=>'WKSP_CURSO'
 );
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(18579400477152446)
@@ -1049,12 +1159,16 @@ wwv_flow_imp_page.create_page_process(
 '  idfantasyseason,',
 '  week,',
 '  idfantasysupplier,',
-'  winpoint)',
+'  winpoint,',
+'  IDFANTASYWORKTEAM)',
 'VALUES(',
 '  :P18_TEMPORADA,',
 '  :P18_SEMANA,',
 '  :P18_PROVEEDOR_CARGA,',
-'  :P18_PUNTUACION_CARGA);'))
+'  :P18_PUNTUACION_CARGA,',
+'  :P18_EQUIPOFANTASY);',
+'',
+':P18_EQUIPOFANTASY_PRECARGA := :P18_EQUIPOFANTASY;'))
 ,p_process_clob_language=>'PLSQL'
 ,p_process_error_message=>unistr('Error al cargar puntuaci\00F3n al proveedor')
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
