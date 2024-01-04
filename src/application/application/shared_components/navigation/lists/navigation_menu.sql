@@ -127,6 +127,26 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_for_pages=>'19,20'
 );
 wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(18648261970683202)
+,p_list_item_display_sequence=>110
+,p_list_item_link_text=>'Posiciones Equipos'
+,p_list_item_link_target=>'f?p=&APP_ID.:21:&APP_SESSION.::&DEBUG.:::'
+,p_list_item_icon=>'fa-accessor-one'
+,p_parent_list_item_id=>wwv_flow_imp.id(17351266549251710)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'21,22'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(18736138794046664)
+,p_list_item_display_sequence=>120
+,p_list_item_link_text=>'Posiciones base'
+,p_list_item_link_target=>'f?p=&APP_ID.:23:&APP_SESSION.::&DEBUG.:::'
+,p_list_item_icon=>'fa-table'
+,p_parent_list_item_id=>wwv_flow_imp.id(17351266549251710)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'23,24'
+);
+wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17239342540935450)
 ,p_list_item_display_sequence=>10000
 ,p_list_item_link_text=>'Administration'

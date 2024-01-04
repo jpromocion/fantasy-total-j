@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'23'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20240104104553'
+,p_last_upd_yyyymmddhh24miss=>'20240104125302'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17563816962252532)
@@ -36,9 +36,9 @@ wwv_flow_imp_page.create_page_plug(
 '    p.IDFANTASYSEASON,',
 '    p.IDFANTASYWORKTEAM,',
 '    p.NAME,',
-'    p.IDFANTASYPOSITION,',
+'    p.IDFANTASYPOSITIONBASE,',
 '    po.position as FANTASYPOSITION,',
-'    po.visualorder as FANTASYPOSITIONORDEN,',
+'    decode(po.position,''QB'',1,''RB'',2,''WR'',3,''TE'',4,5) as FANTASYPOSITIONORDEN,',
 '    p.CREATED,',
 '    p.CREATED_BY,',
 '    p.UPDATED,',
@@ -48,9 +48,9 @@ wwv_flow_imp_page.create_page_plug(
 '    t.city || '' '' || t.team as teamfull,',
 '    t.urllogo as urllogoteam',
 ' from FANTASY_PLAYER p,',
-'    FANTASY_POSITION po,',
+'    FANTASY_POSITION_BASE po,',
 '    FANTASY_TEAM t',
-' where p.IDFANTASYPOSITION = po.id',
+' where p.IDFANTASYPOSITIONBASE = po.id',
 '    and p.idfantasyteam = t.id(+)',
 '    and p.idfantasyseason = :P8_TEMPORADA',
 '    and p.IDFANTASYWORKTEAM = :P8_EQUIPOFANTASY'))

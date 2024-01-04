@@ -35,6 +35,7 @@ prompt --install
 @@application/shared_components/user_interface/lovs/equipos_existentes.sql
 @@application/shared_components/user_interface/lovs/equipos_fantasy.sql
 @@application/shared_components/user_interface/lovs/fuentes_posibles.sql
+@@application/shared_components/user_interface/lovs/posiciones_base_jugador.sql
 @@application/shared_components/user_interface/lovs/posiciones_jugador.sql
 @@application/shared_components/user_interface/lovs/puntuacion_proveedor.sql
 @@application/shared_components/user_interface/lovs/semanas.sql
@@ -140,6 +141,10 @@ prompt --install
 @@application/pages/page_00018.sql
 @@application/pages/page_00019.sql
 @@application/pages/page_00020.sql
+@@application/pages/page_00021.sql
+@@application/pages/page_00022.sql
+@@application/pages/page_00023.sql
+@@application/pages/page_00024.sql
 @@application/pages/page_09999.sql
 @@application/pages/page_10000.sql
 @@application/pages/page_10010.sql
@@ -153,6 +158,7 @@ prompt --install
 @@application/deployment/install/install_02_carga_triggers.sql
 @@application/deployment/install/install_03_carga_inserciones_base.sql
 @@application/deployment/install/install_delta_2_0_sql.sql
+@@application/deployment/install/install_delta_2_2_sql.sql
 @@application/deployment/checks.sql
 @@application/deployment/buildoptions.sql
 @@application/end_environment.sql
