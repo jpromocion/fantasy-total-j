@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20240102123710'
+,p_last_upd_yyyymmddhh24miss=>'20240104105111'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17818958079020011)
@@ -638,12 +638,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_SEASON',
 'order by season desc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18467433558230821)
@@ -652,7 +661,13 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_attribute_01=>'Y'
-,p_item_comment=>'Al precargar como hace submit... se carga los combos de nuevo... utilizamos este valor para dejar guardado el de antes de la precarga de forma que vuelva a cargarse los del mismo equipo fantasy'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'Al precargar como hace submit... se carga los combos de nuevo... utilizamos este valor para dejar guardado el de antes de la precarga de forma que vuelva a cargarse los del mismo equipo fantasy',
+'',
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18487437064518397)
@@ -666,12 +681,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_WORKTEAM',
 'order by id asc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18620025279339033)
@@ -763,6 +787,23 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(17818958079020011)
 );
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(18602340266886905)
+,p_name=>'Primera entrada cargue'
+,p_event_sequence=>20
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18602422546886906)
+,p_event_id=>wwv_flow_imp.id(18602340266886905)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(17818958079020011)
+);
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(17834271932020025)
 ,p_process_sequence=>10
@@ -817,8 +858,8 @@ wwv_flow_imp_page.create_page_process(
 '                :P15_EQUIPOFANTASY',
 '        );',
 '    END LOOP recorrePosiciones;',
-'',
-'    :P15_EQUIPOFANTASY_PRECARGA := :P15_EQUIPOFANTASY;',
+'    --temporada/equipo ya funcionan a nivel global',
+'    --:P15_EQUIPOFANTASY_PRECARGA := :P15_EQUIPOFANTASY;',
 '',
 'END;'))
 ,p_process_clob_language=>'PLSQL'

@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'23'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20240102120307'
+,p_last_upd_yyyymmddhh24miss=>'20240104104553'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17563816962252532)
@@ -119,12 +119,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_SEASON',
 'order by season desc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(17564857656252536)
@@ -157,12 +166,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_WORKTEAM',
 'order by id asc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(16356776380525115)

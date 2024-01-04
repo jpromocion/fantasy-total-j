@@ -19,8 +19,8 @@ wwv_flow_imp_shared.create_flow_process(
 ,p_process_name=>'CARGA_EQUIPO_FANTASY_DEFECTO'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
-'  SELECT id',
-'  INTO :ID_EQUIPO_FANTASY_INICIO',
+'  SELECT id, WORKTEAM',
+'  INTO :ID_EQUIPO_FANTASY_INICIO, :EQUIPO_FANTASY_INICIO',
 '  FROM FANTASY_WORKTEAM',
 '  ORDER BY ID',
 '  FETCH FIRST 1 ROW ONLY;',
@@ -28,8 +28,8 @@ wwv_flow_imp_shared.create_flow_process(
 'EXCEPTION',
 '   WHEN NO_DATA_FOUND THEN',
 '      :ID_EQUIPO_FANTASY_INICIO := NULL;',
-'END;',
-''))
+'      :EQUIPO_FANTASY_INICIO := NULL;',
+'END;'))
 ,p_process_clob_language=>'PLSQL'
 );
 wwv_flow_imp.component_end;

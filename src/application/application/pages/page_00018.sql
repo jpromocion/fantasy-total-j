@@ -21,7 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'18'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20240102124834'
+,p_last_upd_yyyymmddhh24miss=>'20240104105316'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840528635767285)
@@ -918,12 +918,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_WORKTEAM',
 'order by id asc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18522837972770453)
@@ -932,7 +941,11 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_attribute_01=>'Y'
-,p_item_comment=>'Al precargar como hace submit... se carga los combos de nuevo... utilizamos este valor para dejar guardado el de antes de la precarga de forma que vuelva a cargarse los del mismo equipo fantasy'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18576202072152429)
@@ -988,12 +1001,21 @@ wwv_flow_imp_page.create_page_item(
 'FROM FANTASY_SEASON',
 'order by season desc'))
 ,p_cHeight=>1
+,p_display_when=>'1=0'
+,p_display_when2=>'PLSQL'
+,p_display_when_type=>'EXPRESSION'
+,p_read_only_when_type=>'ALWAYS'
 ,p_field_template=>wwv_flow_imp.id(17164567568935201)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
+'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
+unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
+||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18577746134152440)
@@ -1010,6 +1032,18 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov_display_extra=>'NO'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
+);
+wwv_flow_imp.component_end;
+end;
+/
+begin
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.04.28'
+,p_release=>'23.1.5'
+,p_default_workspace_id=>7231611737995830
+,p_default_application_id=>102
+,p_default_id_offset=>0
+,p_default_owner=>'WKSP_CURSO'
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18578219194152441)
@@ -1068,18 +1102,6 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'change'
-);
-wwv_flow_imp.component_end;
-end;
-/
-begin
-wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
-,p_default_workspace_id=>7231611737995830
-,p_default_application_id=>102
-,p_default_id_offset=>0
-,p_default_owner=>'WKSP_CURSO'
 );
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(18579400477152446)
@@ -1148,6 +1170,34 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(36839191417767271)
 );
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(18617208270064663)
+,p_name=>'Primera entrada cargue'
+,p_event_sequence=>40
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18617651504064663)
+,p_event_id=>wwv_flow_imp.id(18617208270064663)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(36790509410580618)
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18602559673886907)
+,p_event_id=>wwv_flow_imp.id(18617208270064663)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(36839191417767271)
+);
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(18578555673152442)
 ,p_process_sequence=>10
@@ -1168,7 +1218,8 @@ wwv_flow_imp_page.create_page_process(
 '  :P18_PUNTUACION_CARGA,',
 '  :P18_EQUIPOFANTASY);',
 '',
-':P18_EQUIPOFANTASY_PRECARGA := :P18_EQUIPOFANTASY;'))
+'--innecesario, ahora trabajamos con temporada/equipo global cambiado en el hombre',
+'--:P18_EQUIPOFANTASY_PRECARGA := :P18_EQUIPOFANTASY;'))
 ,p_process_clob_language=>'PLSQL'
 ,p_process_error_message=>unistr('Error al cargar puntuaci\00F3n al proveedor')
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'

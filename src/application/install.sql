@@ -23,6 +23,7 @@ prompt --install
 @@application/shared_components/navigation/navigation_bar.sql
 @@application/shared_components/logic/application_processes/carga_temporada_actual.sql
 @@application/shared_components/logic/application_processes/carga_equipo_fantasy_defecto.sql
+@@application/shared_components/logic/application_items/equipo_fantasy_inicio.sql
 @@application/shared_components/logic/application_items/id_equipo_fantasy_inicio.sql
 @@application/shared_components/logic/application_items/id_temporada_actual.sql
 @@application/shared_components/logic/application_items/temporada_actual.sql

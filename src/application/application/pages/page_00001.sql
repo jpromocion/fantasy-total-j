@@ -21,24 +21,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'13'
 ,p_last_updated_by=>'JORTRI'
-,p_last_upd_yyyymmddhh24miss=>'20240102113724'
-);
-wwv_flow_imp_page.create_page_plug(
- p_id=>wwv_flow_imp.id(17202544383935283)
-,p_plug_name=>'Fantasy Total'
-,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17103768164935162)
-,p_plug_display_sequence=>10
-,p_plug_display_point=>'REGION_POSITION_01'
-,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'<b>Temporada actual: </b>&TEMPORADA_ACTUAL. <br>',
-'<b>Id temporada actual: </b>&ID_TEMPORADA_ACTUAL. <br>',
-'<b>Id equipo defecto: </b>&ID_EQUIPO_FANTASY_INICIO.'))
-,p_plug_query_num_rows=>15
-,p_region_image=>'#APP_FILES#icons/app-icon-512.png'
-,p_attribute_01=>'N'
-,p_attribute_02=>'HTML'
-,p_attribute_03=>'Y'
+,p_last_upd_yyyymmddhh24miss=>'20240104103831'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18278094394614941)
@@ -47,7 +30,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>70
+,p_plug_display_sequence=>90
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
@@ -145,7 +128,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>80
+,p_plug_display_sequence=>100
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_new_grid_row=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
@@ -202,7 +185,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>90
+,p_plug_display_sequence=>110
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
@@ -310,7 +293,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>40
+,p_plug_display_sequence=>60
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
@@ -420,7 +403,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Win')
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>50
+,p_plug_display_sequence=>70
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 );
@@ -501,7 +484,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Fantasy')
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>80
 ,p_plug_new_grid_row=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_ajax_items_to_submit=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
@@ -603,7 +586,7 @@ wwv_flow_imp_page.create_jet_chart_axis(
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18465410937230801)
 ,p_name=>'P1_EQUIPOFANTASY'
-,p_item_sequence=>20
+,p_item_sequence=>50
 ,p_prompt=>'Equipo Fantasy'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'EQUIPOS_FANTASY'
@@ -622,7 +605,7 @@ wwv_flow_imp_page.create_page_item(
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18725562129229107)
 ,p_name=>'P1_TEMPORADA'
-,p_item_sequence=>10
+,p_item_sequence=>40
 ,p_prompt=>'Temporada'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'TEMPORADAS_EXISTENTES'
@@ -647,7 +630,7 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
 wwv_flow_imp_page.create_page_computation(
- p_id=>wwv_flow_imp.id(18466762269230814)
+ p_id=>wwv_flow_imp.id(18470140611230848)
 ,p_computation_sequence=>20
 ,p_computation_item=>'P1_EQUIPOFANTASY'
 ,p_computation_point=>'BEFORE_BOX_BODY'
@@ -655,9 +638,91 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation=>'ID_EQUIPO_FANTASY_INICIO'
 );
 wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(18602008579886902)
+,p_name=>'Cargar anualidad global'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P1_TEMPORADA'
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18602176770886903)
+,p_event_id=>wwv_flow_imp.id(18602008579886902)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'Asignar valor anualidad global'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'    :ID_TEMPORADA_ACTUAL := :P1_TEMPORADA;',
+'    SELECT SEASON',
+'    INTO :TEMPORADA_ACTUAL',
+'    FROM FANTASY_SEASON',
+'    WHERE ID = :ID_TEMPORADA_ACTUAL;',
+'END;'))
+,p_attribute_02=>'P1_TEMPORADA'
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18602231528886904)
+,p_event_id=>wwv_flow_imp.id(18602008579886902)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(37229574977158420)
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(18469640967230843)
+,p_name=>'Cargar equipo global'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P1_EQUIPOFANTASY'
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18469714429230844)
+,p_event_id=>wwv_flow_imp.id(18469640967230843)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'Asignar valor equipo global'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'    :ID_EQUIPO_FANTASY_INICIO := :P1_EQUIPOFANTASY;',
+'    SELECT WORKTEAM',
+'    INTO :EQUIPO_FANTASY_INICIO',
+'    FROM FANTASY_WORKTEAM',
+'    WHERE ID = :ID_EQUIPO_FANTASY_INICIO;    ',
+'END;',
+'',
+''))
+,p_attribute_02=>'P1_EQUIPOFANTASY'
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(18469804696230845)
+,p_event_id=>wwv_flow_imp.id(18469640967230843)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(37229574977158420)
+);
+wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(18475526912716434)
 ,p_name=>'Refrescar Grafico 1'
-,p_event_sequence=>10
+,p_event_sequence=>40
 ,p_triggering_element_type=>'ITEM'
 ,p_triggering_element=>'P1_TEMPORADA,P1_EQUIPOFANTASY'
 ,p_bind_type=>'bind'
