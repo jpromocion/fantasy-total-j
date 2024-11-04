@@ -65,4 +65,7 @@ En "historico":
 ![Imagen Asignación puntos win por proveedor según resultados](/screenshots/imagen6.png)
 
 
+## Mejoras pendientes
 
+- Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior), revisar proyecciones y resumen para mostrar en base a él.
+- Proyecciones, puntos, resumen -> situar al entrar en al ultima semana con datos ya rellenos.
