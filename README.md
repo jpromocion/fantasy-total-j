@@ -37,6 +37,8 @@ El "src/main/database" es simplemente para facilitar la manipulación del códig
 En "historico":
  * Estan los datos históricos que para mi caso he ido generando por temporada.
 
+En "src/main/ords_rest":
+  - Está el fichero exportado de los RESTful Data Services creados para acceder desde fuera. Ver apartado API REST
 
 ## Screenshots
 
@@ -63,6 +65,23 @@ En "historico":
 ### Asignación puntos win por proveedor según resultados
 
 ![Imagen Asignación puntos win por proveedor según resultados](/screenshots/imagen6.png)
+
+
+## API REST
+
+Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Services:
+  - "/season" - GET. Obtener las temporadas. Resultados JSON estandar de RESTful Data Services.
+  - "/workteam" - GET. Obtener los equipos fantasy. Resultados JSON estandar de RESTful Data Services.
+  - "/team" - GET. Obtener los equipos NFL. Resultados JSON estandar de RESTful Data Services.
+  - "/supplier" - GET. Obtener los proveedores de alineación. Resultados JSON estandar de RESTful Data Services.
+  - "/positionbase" - GET. Obtener las posiciones base configuradas. Resultados JSON estandar de RESTful Data Services.
+  - "/position" - GET. Obtener las posiciones de alineación. Resultados JSON estandar de RESTful Data Services.
+  - "/player" - GET. Obtener los jugadores por temporada/equipo. Resultados JSON estandar de RESTful Data Services.
+  - "/point" - GET. Obtener los puntos fantasy de temporada/equipo/jugador. Resultados JSON estandar de RESTful Data Services.
+  - "/proyection" - GET. Obtener las proyecciones de alineación de temporada/equipo/proveedor. Resultados JSON estandar de RESTful Data Services.
+  - "/player" - PUT. Cargar en una temporada/equipo un nuevo jugador.
+  - "/point" - PUT. Cargar (inserta o actualiza) puntos fantasy a un jugador en temporada/equipo.
+  - "/proyection" - PUT. Cargar (inserta o actualiza) una proyección (jugador) en una posición de alineación por temporada/equipo/proveedor.
 
 
 ## Mejoras pendientes
