@@ -4,8 +4,8 @@ begin
 --     SECURITY SCHEME: Reader Rights
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -27,6 +27,7 @@ wwv_flow_imp_shared.create_security_scheme(
 '        p_user_name      => :APP_USER);',
 'end if;'))
 ,p_error_message=>'You are not authorized to view this application, either because you have not been granted access, or your account has been locked. Please contact the application administrator.'
+,p_version_scn=>1
 ,p_caching=>'BY_USER_BY_SESSION'
 );
 wwv_flow_imp.component_end;

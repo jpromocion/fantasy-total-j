@@ -4,8 +4,8 @@ begin
 --     EMAIL_USERNAME_FORMAT
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -16,6 +16,7 @@ wwv_flow_imp_shared.create_list_of_values(
 ,p_lov_name=>'EMAIL_USERNAME_FORMAT'
 ,p_lov_query=>'.'||wwv_flow_imp.id(17226039672935337)||'.'
 ,p_location=>'STATIC'
+,p_version_scn=>1
 );
 wwv_flow_imp_shared.create_static_lov_data(
  p_id=>wwv_flow_imp.id(17226369162935338)

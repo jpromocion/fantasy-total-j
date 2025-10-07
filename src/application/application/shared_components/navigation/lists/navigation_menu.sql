@@ -4,8 +4,8 @@ begin
 --     LIST: Navigation Menu
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -15,6 +15,7 @@ wwv_flow_imp_shared.create_list(
  p_id=>wwv_flow_imp.id(16997553637935088)
 ,p_name=>'Navigation Menu'
 ,p_list_status=>'PUBLIC'
+,p_version_scn=>1
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17201696753935279)

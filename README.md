@@ -86,5 +86,5 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
 
 ## Mejoras pendientes
 
-- Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior), revisar proyecciones y resumen para mostrar en base a él.
+- Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
 - Proyecciones, puntos, resumen -> situar al entrar en al ultima semana con datos ya rellenos.

@@ -4,8 +4,8 @@ begin
 --     THEME STYLE: 102
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -18,7 +18,6 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_css_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '#APEX_FILES#libraries/oracle-fonts/oraclesans-apex#MIN#.css?v=#APEX_VERSION#',
 '#THEME_FILES#css/Redwood#MIN#.css?v=#APEX_VERSION#'))
-,p_is_current=>false
 ,p_is_public=>true
 ,p_is_accessible=>false
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Redwood-Theme.less'
@@ -30,7 +29,6 @@ wwv_flow_imp_shared.create_theme_style(
  p_id=>wwv_flow_imp.id(17169234824935212)
 ,p_theme_id=>42
 ,p_name=>'Vita'
-,p_is_current=>false
 ,p_is_public=>true
 ,p_is_accessible=>true
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Vita.less'
@@ -42,7 +40,6 @@ wwv_flow_imp_shared.create_theme_style(
  p_id=>wwv_flow_imp.id(17169449509935213)
 ,p_theme_id=>42
 ,p_name=>'Vita - Dark'
-,p_is_current=>false
 ,p_is_public=>true
 ,p_is_accessible=>false
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Vita-Dark.less'
@@ -54,7 +51,6 @@ wwv_flow_imp_shared.create_theme_style(
  p_id=>wwv_flow_imp.id(17169646300935213)
 ,p_theme_id=>42
 ,p_name=>'Vita - Red'
-,p_is_current=>false
 ,p_is_public=>true
 ,p_is_accessible=>false
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Vita-Red.less'
@@ -66,7 +62,6 @@ wwv_flow_imp_shared.create_theme_style(
  p_id=>wwv_flow_imp.id(17169870489935213)
 ,p_theme_id=>42
 ,p_name=>'Vita - Slate'
-,p_is_current=>true
 ,p_is_public=>true
 ,p_is_accessible=>false
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Vita-Slate.less'

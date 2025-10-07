@@ -4,8 +4,8 @@ begin
 --     PAGE: 10000
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -27,8 +27,6 @@ wwv_flow_imp_page.create_page(
 'By selecting one of the available settings, administrators can potentially change how the application is displayed and/or features available to the end users.</p>',
 '<p>Access to this page should be limited to Administrators only.</p>'))
 ,p_page_component_map=>'03'
-,p_last_updated_by=>'CURSO'
-,p_last_upd_yyyymmddhh24miss=>'20221102171230'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17239854826935452)
@@ -51,9 +49,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_sequence=>20
 ,p_plug_new_grid_row=>false
 ,p_plug_query_num_rows=>15
-,p_attribute_01=>'N'
-,p_attribute_02=>'HTML'
-,p_attribute_03=>'Y'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML',
+  'show_line_breaks', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17241904768935454)
@@ -65,9 +64,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_sequence=>30
 ,p_plug_query_num_rows=>15
 ,p_required_patch=>wwv_flow_imp.id(17193999492935251)
-,p_attribute_01=>'N'
-,p_attribute_02=>'HTML'
-,p_attribute_03=>'Y'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML',
+  'show_line_breaks', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17242713634935455)
@@ -125,7 +125,6 @@ wwv_flow_imp_page.create_report_columns(
 ,p_column_alias=>'ROLE_NAME'
 ,p_column_display_sequence=>1
 ,p_column_heading=>'Role Name'
-,p_use_as_row_header=>'N'
 ,p_heading_alignment=>'LEFT'
 );
 wwv_flow_imp_page.create_report_columns(
@@ -134,7 +133,6 @@ wwv_flow_imp_page.create_report_columns(
 ,p_column_alias=>'USER_COUNT'
 ,p_column_display_sequence=>2
 ,p_column_heading=>'User Count'
-,p_use_as_row_header=>'N'
 ,p_column_format=>'999G999G999G999G999G999G990'
 ,p_heading_alignment=>'LEFT'
 );
@@ -144,7 +142,6 @@ wwv_flow_imp_page.create_report_columns(
 ,p_column_alias=>'ROLE_ID'
 ,p_column_display_sequence=>3
 ,p_column_heading=>'Role Id'
-,p_use_as_row_header=>'N'
 ,p_heading_alignment=>'LEFT'
 );
 wwv_flow_imp_page.create_page_plug(
@@ -171,6 +168,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_template_id=>wwv_flow_imp.id(17167123661935205)
 ,p_button_image_alt=>'Add User'
 ,p_button_position=>'EDIT'
+,p_button_alignment=>'RIGHT'
 ,p_button_redirect_url=>'f?p=&APP_ID.:10012:&SESSION.::&DEBUG.:RP,10012::'
 ,p_icon_css_classes=>'fa-user-plus'
 );
@@ -193,6 +191,7 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(17243188938935455)
+,p_attribute_01=>'N'
 );
 wwv_flow_imp.component_end;
 end;

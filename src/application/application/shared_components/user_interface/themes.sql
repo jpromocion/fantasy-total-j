@@ -4,8 +4,8 @@ begin
 --     THEME: 102
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -16,10 +16,12 @@ wwv_flow_imp_shared.create_theme(
 ,p_theme_id=>42
 ,p_theme_name=>'Universal Theme'
 ,p_theme_internal_name=>'UNIVERSAL_THEME'
+,p_version_identifier=>'22.1'
 ,p_navigation_type=>'L'
 ,p_nav_bar_type=>'LIST'
 ,p_reference_id=>4070917134413059350
 ,p_is_locked=>false
+,p_current_theme_style_id=>wwv_flow_imp.id(17169870489935213)
 ,p_default_page_template=>wwv_flow_imp.id(17008128901935108)
 ,p_default_dialog_template=>wwv_flow_imp.id(17025598325935117)
 ,p_error_template=>wwv_flow_imp.id(17022947499935116)

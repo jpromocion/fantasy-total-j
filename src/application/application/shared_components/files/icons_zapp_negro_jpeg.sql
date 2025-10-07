@@ -4,8 +4,8 @@ begin
 --     APP STATIC FILES: 102
 --   Manifest End
 wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.9'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -618,19 +618,6 @@ wwv_flow_imp.g_varchar2_table(603) := 'B5BBFC456379FA04CFD028F243C8B6A318CB992DC
 wwv_flow_imp.g_varchar2_table(604) := '06E247FAD8EFF110F882F122475D56EFF1158DE7E8133F40A8D26F2FA94C2C63B17C83C4178911DB55BBFC441E20BC480EDAADF9FF0068AC6F3F4099FA04C2DB6E84B2F18EC5F1FE705E2473FF003B1DFE22E7F382F121FD6B7FF88AC6F3F4099FA051E4';
 wwv_flow_imp.g_varchar2_table(605) := '87914E8B05D5EBEE30B7CF70F4AB6D57BD5F5869B1F332290B40FB8856D974BCDDAEF58DAABB5CA7B8D506F287CD217903DBAAF981EEE40D2FE56FDCB81FA3903BA3C29610FBBCBD8EA24737B1C75CFE2B8739CE79738E493D575F545501111004444011';
 wwv_flow_imp.g_varchar2_table(606) := '11004444011110044440111101FFD9';
-null;
-wwv_flow_imp.component_end;
-end;
-/
-begin
-wwv_flow_imp.component_begin (
- p_version_yyyy_mm_dd=>'2023.04.28'
-,p_release=>'23.1.5'
-,p_default_workspace_id=>7231611737995830
-,p_default_application_id=>102
-,p_default_id_offset=>0
-,p_default_owner=>'WKSP_CURSO'
-);
 wwv_flow_imp_shared.create_app_static_file(
  p_id=>wwv_flow_imp.id(14027342571089643)
 ,p_file_name=>'icons/zapp_negro.jpeg'
@@ -638,7 +625,6 @@ wwv_flow_imp_shared.create_app_static_file(
 ,p_file_charset=>'utf-8'
 ,p_file_content => wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
 );
-null;
 wwv_flow_imp.component_end;
 end;
 /

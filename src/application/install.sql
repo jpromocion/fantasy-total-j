@@ -7,6 +7,7 @@ prompt --install
 @@application/shared_components/navigation/lists/navigation_menu.sql
 @@application/shared_components/navigation/lists/navigation_bar.sql
 @@application/shared_components/navigation/lists/access_control.sql
+@@application/shared_components/navigation/listentry.sql
 @@application/shared_components/files/icons_app_icon_144_rounded_png.sql
 @@application/shared_components/files/icons_app_icon_256_rounded_png.sql
 @@application/shared_components/files/icons_zapp_negro_jpeg.sql
@@ -31,6 +32,7 @@ prompt --install
 @@application/shared_components/navigation/tabs/standard.sql
 @@application/shared_components/navigation/tabs/parent.sql
 @@application/shared_components/user_interface/lovs/access_roles.sql
+@@application/shared_components/user_interface/lovs/baja_activo_entero.sql
 @@application/shared_components/user_interface/lovs/email_username_format.sql
 @@application/shared_components/user_interface/lovs/equipos_existentes.sql
 @@application/shared_components/user_interface/lovs/equipos_fantasy.sql
@@ -159,6 +161,7 @@ prompt --install
 @@application/deployment/install/install_03_carga_inserciones_base.sql
 @@application/deployment/install/install_delta_2_0_sql.sql
 @@application/deployment/install/install_delta_2_2_sql.sql
+@@application/deployment/install/install_delta_2_4_sql.sql
 @@application/deployment/checks.sql
 @@application/deployment/buildoptions.sql
 @@application/end_environment.sql
