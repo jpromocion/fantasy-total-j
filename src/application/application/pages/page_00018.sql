@@ -24,6 +24,7 @@ wwv_flow_imp_page.create_page(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840528635767285)
 ,p_plug_name=>unistr('Puntuaci\00F3n en semana')
+,p_region_name=>'region_fija_puntos'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(17069367738935144)
 ,p_plug_display_sequence=>90
@@ -36,6 +37,7 @@ wwv_flow_imp_page.create_page_plug(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36790509410580618)
 ,p_plug_name=>'Resumen Semanal'
+,p_region_name=>'region_ig_puntos'
 ,p_parent_plug_id=>wwv_flow_imp.id(36840528635767285)
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(17067238129935143)
@@ -545,6 +547,8 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 ,p_break_order=>5
 ,p_break_is_enabled=>true
+,p_break_sort_direction=>'ASC'
+,p_break_sort_nulls=>'LAST'
 );
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(18518840866746787)
@@ -559,7 +563,7 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_view_id=>wwv_flow_imp.id(36791547625580619)
 ,p_display_seq=>13
 ,p_column_id=>wwv_flow_imp.id(34925005952677516)
-,p_is_visible=>true
+,p_is_visible=>false
 ,p_is_frozen=>false
 ,p_sort_order=>3
 ,p_sort_direction=>'ASC'
@@ -679,6 +683,16 @@ wwv_flow_imp_page.create_ig_report_aggregate(
 ,p_column_id=>wwv_flow_imp.id(36797809722580624)
 ,p_show_grand_total=>false
 ,p_is_enabled=>true
+);
+wwv_flow_imp_page.create_ig_report_filter(
+ p_id=>wwv_flow_imp.id(180314000001)
+,p_report_id=>wwv_flow_imp.id(36791376823580619)
+,p_type=>'COLUMN'
+,p_column_id=>wwv_flow_imp.id(36794795535580622)
+,p_operator=>'EQ'
+,p_is_case_sensitive=>false
+,p_expression=>'RotoTrade'
+,p_is_enabled=>false
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840623463767286)
