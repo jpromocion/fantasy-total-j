@@ -84,7 +84,9 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
   - "/proyection" - PUT. Cargar (inserta o actualiza) una proyección (jugador) en una posición de alineación por temporada/equipo/proveedor.
 
 
-## Mejoras pendientes
+## 📈 Mejoras Futuras
 
-- Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
-- Proyecciones, puntos, resumen -> situar al entrar en al ultima semana con datos ya rellenos.
+- [ ] Nuevo gráfico estadístico: % de acierto de proveedor. En una semana obtener los puntos de alineacion "ideal", en base a ello la puntuacion de alineacion de cada proveedor tiene un % en relacion de acierto. Mantener asi durante la temporada la media de ese % de acierto. Sacarlo como un gráfico y tabla.
+- [ ] Separar asignacion puntos win: ahora mismo el informe de equipo resumen no se ve bien por estar en un tabular, parece un bug. Separar esto. Facilitar el relleno con un combo seleccion proveedor y puntuacion donde el listado, para asignarlo rapido.
+- [ ] Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
+- [ ] Proyecciones, puntos, resumen -> situar al entrar en al ultima semana con datos ya rellenos.
