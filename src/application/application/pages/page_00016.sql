@@ -25,7 +25,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18178191623255392)
 ,p_plug_name=>'Puntos Fantasy'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_template=>2100526641005906379
 ,p_plug_display_sequence=>40
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_POINT'
@@ -486,7 +486,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -514,7 +514,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -535,7 +535,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_named_lov=>'SEMANAS'
 ,p_lov=>'.'||wwv_flow_imp.id(17843189527123159)||'.'
 ,p_cHeight=>1
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'

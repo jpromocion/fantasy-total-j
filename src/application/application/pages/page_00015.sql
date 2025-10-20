@@ -25,7 +25,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17818958079020011)
 ,p_plug_name=>'Proyecciones'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_template=>2100526641005906379
 ,p_plug_display_sequence=>60
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -665,7 +665,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(20203257081424104)
 ,p_plug_name=>'Pre-carga'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_plug_template=>wwv_flow_imp.id(17069367738935144)
+,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>70
 ,p_plug_new_grid_row=>false
 ,p_plug_new_grid_column=>false
@@ -681,7 +681,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'PreCargaPosicion'
 ,p_button_action=>'SUBMIT'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Pre Cargar'
 ,p_grid_new_row=>'Y'
@@ -702,7 +702,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -746,7 +746,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -767,7 +767,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_named_lov=>'SEMANAS'
 ,p_lov=>'.'||wwv_flow_imp.id(17843189527123159)||'.'
 ,p_cHeight=>1
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -786,10 +786,11 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select name, id',
 'from FANTASY_SUPPLIER',
+'WHERE NVL(CLOSED,0) = 0',
 'order by id'))
 ,p_lov_display_null=>'YES'
 ,p_cSize=>30
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'

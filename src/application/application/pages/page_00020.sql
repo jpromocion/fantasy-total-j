@@ -27,7 +27,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18440086913071613)
 ,p_plug_name=>'Equipo Fantasy Jugador'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17033764143935126)
+,p_plug_template=>4501440665235496320
 ,p_plug_display_sequence=>10
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_WORKTEAM'
@@ -42,7 +42,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Auditoria'
 ,p_parent_plug_id=>wwv_flow_imp.id(18440086913071613)
 ,p_region_template_options=>'#DEFAULT#:is-collapsed:t-Region--scrollBody'
-,p_plug_template=>wwv_flow_imp.id(17042708691935130)
+,p_plug_template=>2664334895415463485
 ,p_plug_display_sequence=>80
 ,p_location=>null
 ,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
@@ -55,7 +55,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18445123297071617)
 ,p_plug_name=>'Buttons'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17036564828935127)
+,p_plug_template=>2126429139436695430
 ,p_plug_display_sequence=>20
 ,p_plug_display_point=>'REGION_POSITION_03'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -70,7 +70,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'CANCEL'
 ,p_button_action=>'DEFINED_BY_DA'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Volver'
 ,p_button_position=>'CLOSE'
 ,p_warn_on_unsaved_changes=>null
@@ -82,7 +82,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'DELETE'
 ,p_button_action=>'SUBMIT'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Borrar'
 ,p_button_position=>'DELETE'
 ,p_button_execute_validations=>'N'
@@ -99,7 +99,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'SAVE'
 ,p_button_action=>'SUBMIT'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Guardar'
 ,p_button_position=>'NEXT'
@@ -114,7 +114,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'CREATE'
 ,p_button_action=>'SUBMIT'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Crear'
 ,p_button_position=>'NEXT'
@@ -154,7 +154,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_TEXT_FIELD'
 ,p_cSize=>32
 ,p_cMaxlength=>100
-,p_field_template=>wwv_flow_imp.id(17165892676935202)
+,p_field_template=>1609122147107268652
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -176,7 +176,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_TEXT_FIELD'
 ,p_cSize=>60
 ,p_cMaxlength=>1000
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -201,7 +201,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>32
 ,p_cMaxlength=>255
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -228,7 +228,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cMaxlength=>255
 ,p_cHeight=>5
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -253,7 +253,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>32
 ,p_cMaxlength=>255
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
@@ -280,7 +280,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cMaxlength=>255
 ,p_cHeight=>5
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(

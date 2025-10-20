@@ -25,7 +25,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17733187085807358)
 ,p_plug_name=>'Equipos NFL'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17040854231935129)
+,p_plug_template=>2072724515482255512
 ,p_plug_display_sequence=>10
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_TEAM'
@@ -74,7 +74,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'Crear'
 ,p_button_action=>'REDIRECT_PAGE'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Crear'
 ,p_button_redirect_url=>'f?p=&APP_ID.:12:&SESSION.::&DEBUG.:12::'
@@ -94,7 +94,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>'STATIC2:Ciudad;CITY,Nombre equipo;TEAM'
 ,p_cHeight=>1
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'

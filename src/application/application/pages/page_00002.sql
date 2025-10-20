@@ -32,7 +32,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17330455112135506)
 ,p_plug_name=>'Proveedores Fantasy'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_template=>2100526641005906379
 ,p_plug_display_sequence=>10
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_SUPPLIER'
@@ -180,7 +180,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_db_column_name=>'CLOSED'
 ,p_display_order=>30
 ,p_column_identifier=>'L'
-,p_column_label=>'Closed'
+,p_column_label=>'Baja'
 ,p_column_type=>'NUMBER'
 ,p_display_text_as=>'LOV_ESCAPE_SC'
 ,p_heading_alignment=>'RIGHT'
@@ -196,7 +196,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'173368'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
-,p_report_columns=>'ID:NAME:DESCRIPTION:URLGENERAL:URLWEEKPROYECTION:CREATED:CREATED_BY:UPDATED:UPDATED_BY'
+,p_report_columns=>'NAME:DESCRIPTION:URLGENERAL:URLWEEKPROYECTION:CLOSED:'
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(17335072731135511)
@@ -205,7 +205,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'CREATE'
 ,p_button_action=>'REDIRECT_PAGE'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Crear'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'

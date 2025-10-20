@@ -25,7 +25,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17563816962252532)
 ,p_plug_name=>'Jugadores temporada'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17040854231935129)
+,p_plug_template=>2072724515482255512
 ,p_plug_display_sequence=>30
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -98,7 +98,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'Crear'
 ,p_button_action=>'REDIRECT_PAGE'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Crear'
 ,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::P9_IDFANTASYSEASON,P9_IDFANTASYWORKTEAM:&P8_TEMPORADA.,&P8_EQUIPOFANTASY.'
@@ -121,7 +121,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -145,7 +145,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>unistr('STATIC2:Nombre;NAME,Posici\00F3n;FANTASYPOSITIONORDEN')
 ,p_cHeight=>1
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
@@ -168,7 +168,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_when2=>'PLSQL'
 ,p_display_when_type=>'EXPRESSION'
 ,p_read_only_when_type=>'ALWAYS'
-,p_field_template=>wwv_flow_imp.id(17164567568935201)
+,p_field_template=>1609121967514267634
 ,p_item_template_options=>'#DEFAULT#'
 ,p_warn_on_unsaved_changes=>'I'
 ,p_lov_display_extra=>'NO'
