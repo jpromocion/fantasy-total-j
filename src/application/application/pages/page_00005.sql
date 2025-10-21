@@ -24,7 +24,7 @@ wwv_flow_imp_page.create_page(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(8934175664306786)
 ,p_plug_name=>unistr('Clasificaci\00F3n temporal - Puntos Win')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>10
 ,p_location=>null
@@ -321,7 +321,7 @@ wwv_flow_imp_page.create_report_columns(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(20203653046424108)
 ,p_plug_name=>unistr('Clasificaci\00F3n temporal - Puntos Fantasy')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>20
@@ -633,7 +633,7 @@ wwv_flow_imp_page.create_report_columns(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(32321088158131223)
 ,p_plug_name=>unistr('Clasificaci\00F3n temporal - % acierto')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>30

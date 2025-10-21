@@ -24,7 +24,7 @@ wwv_flow_imp_page.create_page(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18278094394614941)
 ,p_plug_name=>unistr('Contribuci\00F3n por posicion')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>4072358936313175081
@@ -123,7 +123,7 @@ wwv_flow_imp_page.create_jet_chart_axis(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18278658845614947)
 ,p_plug_name=>unistr('Contribuci\00F3n por jugador')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>4072358936313175081
@@ -391,7 +391,7 @@ wwv_flow_imp_page.create_jet_chart_axis(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(32319456210131207)
 ,p_plug_name=>'Proveedor - % acierto'
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>4072358936313175081
@@ -1022,7 +1022,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36713102027907307)
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Win')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>70
 ,p_location=>null
@@ -1092,7 +1092,7 @@ wwv_flow_imp_page.create_jet_chart_series(
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36716032773908258)
 ,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Fantasy')
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>80
 ,p_plug_new_grid_row=>false
@@ -1115,7 +1115,7 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_zoom_and_scroll=>'off'
 ,p_tooltip_rendered=>'Y'
 ,p_show_series_name=>false
-,p_show_group_name=>false
+,p_show_group_name=>true
 ,p_show_value=>true
 ,p_legend_rendered=>'off'
 );
