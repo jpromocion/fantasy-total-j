@@ -1907,7 +1907,7 @@ wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18578219194152441)
 ,p_computation_sequence=>10
 ,p_computation_item=>'P18_TEMPORADA'
-,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
@@ -1915,7 +1915,7 @@ wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18467730066230824)
 ,p_computation_sequence=>20
 ,p_computation_item=>'P18_EQUIPOFANTASY'
-,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
 ,p_computation_language=>'PLSQL'
 ,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -1929,6 +1929,27 @@ wwv_flow_imp_page.create_page_computation(
 '        :P18_EQUIPOFANTASY_PRECARGA := NULL;',
 '        RETURN devolver;',
 '    END IF;',
+'END;'))
+);
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(33531909191593836)
+,p_computation_sequence=>30
+,p_computation_item=>'P18_SEMANA'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation_language=>'PLSQL'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'  week_ VARCHAR2(2);',
+'BEGIN',
+'',
+'    SELECT to_char(nvl(max(po.week),1))',
+'    INTO week_',
+'    from FANTASY_POINT po',
+'    where po.idfantasyseason = :P16_TEMPORADA',
+'        and po.IDFANTASYWORKTEAM = :P16_EQUIPOFANTASY;',
+'',
+'    return week_;',
 'END;'))
 );
 wwv_flow_imp_page.create_page_da_event(

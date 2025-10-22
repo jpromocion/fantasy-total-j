@@ -26,7 +26,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Proyecciones'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>2100526641005906379
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>70
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select',
@@ -666,7 +666,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Pre-carga'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
-,p_plug_display_sequence=>70
+,p_plug_display_sequence=>80
 ,p_plug_new_grid_row=>false
 ,p_plug_new_grid_column=>false
 ,p_location=>null
@@ -733,7 +733,7 @@ unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el 
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18487437064518397)
 ,p_name=>'P15_EQUIPOFANTASY'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_prompt=>'Equipo Fantasy'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'EQUIPOS_FANTASY'
@@ -761,7 +761,7 @@ unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el 
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18620025279339033)
 ,p_name=>'P15_SEMANA'
-,p_item_sequence=>50
+,p_item_sequence=>60
 ,p_prompt=>'Semana'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SEMANAS'
@@ -807,7 +807,7 @@ wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18191709825270202)
 ,p_computation_sequence=>10
 ,p_computation_item=>'P15_TEMPORADA'
-,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'ITEM_VALUE'
 ,p_computation=>'ID_TEMPORADA_ACTUAL'
 );
@@ -815,7 +815,7 @@ wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18467276091230819)
 ,p_computation_sequence=>20
 ,p_computation_item=>'P15_EQUIPOFANTASY'
-,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
 ,p_computation_language=>'PLSQL'
 ,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -829,6 +829,27 @@ wwv_flow_imp_page.create_page_computation(
 '        :P15_EQUIPOFANTASY_PRECARGA := NULL;',
 '        RETURN devolver;',
 '    END IF;',
+'END;'))
+);
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(33531650292593833)
+,p_computation_sequence=>30
+,p_computation_item=>'P15_SEMANA'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation_language=>'PLSQL'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'  week_ VARCHAR2(2);',
+'BEGIN',
+'',
+'    SELECT to_char(nvl(max(pr.week),1))',
+'    INTO week_',
+'    from FANTASY_PROYECTION pr',
+'    where pr.idfantasyseason = :P15_TEMPORADA',
+'        and pr.IDFANTASYWORKTEAM = :P15_EQUIPOFANTASY;',
+'',
+'    return week_;',
 'END;'))
 );
 wwv_flow_imp_page.create_page_da_event(
@@ -863,7 +884,7 @@ wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(18602422546886906)
 ,p_event_id=>wwv_flow_imp.id(18602340266886905)
 ,p_event_result=>'TRUE'
-,p_action_sequence=>10
+,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
