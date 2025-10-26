@@ -29,7 +29,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(41861688757541141)
 ,p_plug_name=>'Acerca de'
 ,p_region_template_options=>'#DEFAULT#:t-ContentBlock--padded:t-ContentBlock--h1:t-ContentBlock--lightBG'
-,p_plug_template=>wwv_flow_imp.id(17052866574935136)
+,p_plug_template=>2322115667525957943
 ,p_plug_display_sequence=>30
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 unistr('<h1>Jose Javier G\00E1lvez G\00F3mez</h1>'),

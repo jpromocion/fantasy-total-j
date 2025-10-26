@@ -25,7 +25,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17353577669269468)
 ,p_plug_name=>'Posiciones Predefinidas'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_template=>2100526641005906379
 ,p_plug_display_sequence=>20
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_POSITION'
@@ -370,7 +370,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Relaciones base'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17067238129935143)
+,p_plug_template=>2100526641005906379
 ,p_plug_display_sequence=>30
 ,p_query_type=>'TABLE'
 ,p_query_table=>'FANTASY_POSITION_BASE_RELA'

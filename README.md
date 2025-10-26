@@ -84,7 +84,7 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
   - "/proyection" - PUT. Cargar (inserta o actualiza) una proyección (jugador) en una posición de alineación por temporada/equipo/proveedor.
 
 
-## Mejoras pendientes
+## 📈 Mejoras Futuras
 
-- Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
-- Proyecciones, puntos, resumen -> situar al entrar en al ultima semana con datos ya rellenos.
+- [ ] Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
+- [ ] Jugador que tiene más de una posicion base: Sobre todo por IDP.

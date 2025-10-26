@@ -19,6 +19,7 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'Configure Access Control'
 ,p_autocomplete_on_off=>'OFF'
 ,p_group_id=>wwv_flow_imp.id(17196952951935260)
+,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_imp.id(17195608812935255)
 ,p_required_patch=>wwv_flow_imp.id(17193999492935251)
 ,p_protection_level=>'U'
@@ -43,7 +44,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Access Control Configuration'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
-,p_plug_template=>wwv_flow_imp.id(17033764143935126)
+,p_plug_template=>4501440665235496320
 ,p_plug_display_sequence=>10
 ,p_query_type=>'SQL'
 ,p_plug_query_num_rows=>15
@@ -57,7 +58,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Buttons'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
-,p_plug_template=>wwv_flow_imp.id(17036564828935127)
+,p_plug_template=>2126429139436695430
 ,p_plug_display_sequence=>10
 ,p_plug_display_point=>'REGION_POSITION_03'
 ,p_query_type=>'SQL'
@@ -74,7 +75,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'APPLY_CHANGES'
 ,p_button_action=>'SUBMIT'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Apply Changes'
 ,p_button_position=>'CREATE'
@@ -87,7 +88,7 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_name=>'CANCEL'
 ,p_button_action=>'DEFINED_BY_DA'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(17167082771935205)
+,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'PREVIOUS'
 ,p_button_alignment=>'RIGHT'
@@ -121,7 +122,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cMaxlength=>4000
 ,p_cHeight=>4
 ,p_grid_label_column_span=>3
-,p_field_template=>wwv_flow_imp.id(17164360525935201)
+,p_field_template=>2318601014859922299
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_inline_help_text=>'Choose <strong>No</strong> if all users are defined in the access control list. Choose <strong>Yes</strong> if authenticated users not in the access control list may also use this application.'

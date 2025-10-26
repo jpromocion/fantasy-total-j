@@ -24,7 +24,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(35830796639218964)
 ,p_plug_name=>'Fantasy Total_OLD'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17103768164935162)
+,p_plug_template=>2674017834225413037
 ,p_plug_display_sequence=>20
 ,p_plug_display_point=>'REGION_POSITION_01'
 ,p_location=>null
@@ -48,7 +48,7 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(37229574977158420)
 ,p_plug_name=>'Fantasy Total'
 ,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(17103768164935162)
+,p_plug_template=>2674017834225413037
 ,p_plug_display_sequence=>10
 ,p_plug_display_point=>'REGION_POSITION_01'
 ,p_location=>null
