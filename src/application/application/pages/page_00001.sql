@@ -23,7 +23,8 @@ wwv_flow_imp_page.create_page(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18278094394614941)
-,p_plug_name=>unistr('Contribuci\00F3n por posicion')
+,p_plug_name=>'contribucion-posicion'
+,p_title=>unistr('Contribuci\00F3n por posici\00F3n')
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
@@ -122,7 +123,8 @@ wwv_flow_imp_page.create_jet_chart_axis(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18278658845614947)
-,p_plug_name=>unistr('Contribuci\00F3n por jugador')
+,p_plug_name=>'contribucion-jugador'
+,p_title=>unistr('Contribuci\00F3n por jugador')
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
@@ -180,7 +182,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18795576951040503)
-,p_plug_name=>'Semanal Jugadores'
+,p_plug_name=>'semanal-jugadores'
+,p_title=>'Semanal Jugadores'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
@@ -289,7 +292,8 @@ wwv_flow_imp_page.create_jet_chart_axis(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(18797056728040518)
-,p_plug_name=>'Semanal Proveedor'
+,p_plug_name=>'semanal-proveedor'
+,p_title=>'Semanal Proveedor'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
@@ -390,7 +394,8 @@ wwv_flow_imp_page.create_jet_chart_axis(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(32319456210131207)
-,p_plug_name=>'Proveedor - % acierto'
+,p_plug_name=>'proveedor-acierto'
+,p_title=>'Proveedor - % acierto'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_escape_on_http_output=>'Y'
@@ -637,7 +642,8 @@ wwv_flow_imp_page.create_jet_chart_axis(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(33528924489593806)
-,p_plug_name=>'Datos Desglosados'
+,p_plug_name=>'proveedor-acierto-datos'
+,p_title=>'Datos Desglosados'
 ,p_parent_plug_id=>wwv_flow_imp.id(32319456210131207)
 ,p_region_template_options=>'#DEFAULT#:is-collapsed:t-Region--scrollBody'
 ,p_plug_template=>2664334895415463485
@@ -650,7 +656,8 @@ wwv_flow_imp_page.create_page_plug(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(32323238067131245)
-,p_plug_name=>'Porc_Acierto_desglo'
+,p_plug_name=>'proveedor-acierto-datos-desglo'
+,p_title=>'% acierto desglo'
 ,p_parent_plug_id=>wwv_flow_imp.id(33528924489593806)
 ,p_region_template_options=>'#DEFAULT#:t-IRR-region--hideHeader js-addHiddenHeadingRoleDesc'
 ,p_component_template_options=>'#DEFAULT#'
@@ -860,6 +867,7 @@ unistr('  NVL(slt.supplier_lineup_desc, ''(sin alineaci\00F3n de proveedor)'') "
 ,p_prn_width=>297
 ,p_prn_height=>210
 ,p_prn_orientation=>'HORIZONTAL'
+,p_prn_page_header=>'% acierto desglo'
 ,p_prn_page_header_font_color=>'#000000'
 ,p_prn_page_header_font_family=>'Helvetica'
 ,p_prn_page_header_font_weight=>'normal'
@@ -1021,7 +1029,8 @@ wwv_flow_imp_page.create_worksheet_rpt(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36713102027907307)
-,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Win')
+,p_plug_name=>'proveedor-puntuacion-win'
+,p_title=>unistr('Proveedor - Puntuaci\00F3n Win')
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>70
@@ -1091,7 +1100,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36716032773908258)
-,p_plug_name=>unistr('Proveedor - Puntuaci\00F3n Fantasy')
+,p_plug_name=>'proveedor-puntuacion-fantasy'
+,p_title=>unistr('Proveedor - Puntuaci\00F3n Fantasy')
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>4072358936313175081
 ,p_plug_display_sequence=>80
