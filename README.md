@@ -87,4 +87,4 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
 ## 📈 Mejoras Futuras
 
 - [ ] Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
-- [ ] Jugador que tiene más de una posicion base: Sobre todo por IDP. Aunque entre IDP basta con ser flexible al asociar mas posiciones base...
+- [ ] Jugador que tiene más de una posicion base: Sobre todo por IDP. Aunque entre IDP basta con ser flexible al asociar mas posiciones base... Pero estropea el calculo de la alineacion ideal!!
