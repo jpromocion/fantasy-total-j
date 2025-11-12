@@ -36,6 +36,8 @@ El "src/main/database" es simplemente para facilitar la manipulación del códig
 
 En "historico":
  * Estan los datos históricos que para mi caso he ido generando por temporada.
+> Finalmente estos datos, por privados, se pasan a mi repositorio privado.
+> Al final de cada temporada estaría bien refrescar dicha copia.
 
 En "src/main/ords_rest":
   - Está el fichero exportado de los RESTful Data Services creados para acceder desde fuera. Ver apartado API REST
