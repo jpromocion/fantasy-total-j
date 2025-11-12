@@ -82,6 +82,7 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
   - "/point" - GET. Obtener los puntos fantasy de temporada/equipo/jugador. Resultados JSON estandar de RESTful Data Services.
   - "/proyection" - GET. Obtener las proyecciones de alineación de temporada/equipo/proveedor. Resultados JSON estandar de RESTful Data Services.
   - "/player" - PUT. Cargar en una temporada/equipo un nuevo jugador.
+  - "/playerposadi" - PUT. Cargar una posición adicional al jugador concreto.
   - "/point" - PUT. Cargar (inserta o actualiza) puntos fantasy a un jugador en temporada/equipo.
   - "/proyection" - PUT. Cargar (inserta o actualiza) una proyección (jugador) en una posición de alineación por temporada/equipo/proveedor.
 
