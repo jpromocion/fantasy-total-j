@@ -72,6 +72,7 @@ prompt --install
 @@application/pages/page_00009.sql
 @@application/pages/page_00011.sql
 @@application/pages/page_00012.sql
+@@application/pages/page_00013.sql
 @@application/pages/page_00015.sql
 @@application/pages/page_00016.sql
 @@application/pages/page_00018.sql
@@ -97,6 +98,7 @@ prompt --install
 @@application/deployment/install/install_delta_2_2_sql.sql
 @@application/deployment/install/install_delta_2_4_sql.sql
 @@application/deployment/install/install_delta_2_5_sql.sql
+@@application/deployment/install/install_delta_2_6_sql.sql
 @@application/deployment/checks.sql
 @@application/deployment/buildoptions.sql
 @@application/end_environment.sql

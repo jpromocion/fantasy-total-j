@@ -86,7 +86,6 @@ Se crea la siguiente API de servicios "/fantasy" con Oracle RESTful Data Service
 
 ## 📈 Mejoras Futuras
 
-- [ ] Jugador que tiene más de una posicion base: Sobre todo por IDP. Aunque entre IDP basta con ser flexible al asociar mas posiciones base... Pero estropea el calculo de la alineacion ideal!!
-- [ ] Resumen semanal: desde porcentaje acierto: campos limite infe, limite superio y boton: inserte las puntuaciones de todos proveedores 0,5,10 con los limites indicados... mmmm
-- [ ] Posiciones por equipo, configuradas por cada equipo/temporada. Script, modificar manteninimiento (con boton para copiar la de la temporada anterior)
+
+
 

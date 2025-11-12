@@ -5,7 +5,7 @@ begin
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2024.11.30'
-,p_release=>'24.2.9'
+,p_release=>'24.2.10'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -263,11 +263,26 @@ wwv_flow_imp_page.create_region_column(
 'from FANTASY_PLAYER pl',
 'where pl.idfantasyseason = :IDFANTASYSEASON',
 '  and pl.IDFANTASYWORKTEAM = :IDFANTASYWORKTEAM',
-'  and pl.IDFANTASYPOSITIONBASE in',
+'  and ',
 '    (',
-'    select pbr.IDFANTASYPOSITIONBASE',
-'    from FANTASY_POSITION_BASE_RELA pbr',
-'    where pbr.IDFANTASYPOSITION = :IDFANTASYPOSITION',
+'      pl.IDFANTASYPOSITIONBASE in',
+'        (',
+'            select pbr.IDFANTASYPOSITIONBASE',
+'            from FANTASY_POSITION_BASE_RELA pbr',
+'            where pbr.IDFANTASYPOSITION = :IDFANTASYPOSITION',
+'        )',
+'      OR EXISTS',
+'        (',
+'            SELECT ''X''',
+'            FROM FANTASY_PLAYER_POSITION_BASE_ADI PAD',
+'            WHERE PAD.IDFANTASYPLAYER = pl.id',
+'              AND PAD.IDFANTASYPOSITIONBASE IN ',
+'                (',
+'                    select pbr.IDFANTASYPOSITIONBASE',
+'                    from FANTASY_POSITION_BASE_RELA pbr',
+'                    where pbr.IDFANTASYPOSITION = :IDFANTASYPOSITION',
+'                )',
+'        )',
 '    )',
 'order by pl.name'))
 ,p_lov_display_extra=>false

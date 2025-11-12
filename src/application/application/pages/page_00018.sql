@@ -5,7 +5,7 @@ begin
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2024.11.30'
-,p_release=>'24.2.9'
+,p_release=>'24.2.10'
 ,p_default_workspace_id=>7231611737995830
 ,p_default_application_id=>102
 ,p_default_id_offset=>0
@@ -78,19 +78,41 @@ unistr('-- Par\00E1metros APEX: :P18_TEMPORADA, :P18_EQUIPOFANTASY, :P18_SEMANA'
 '  JOIN FANTASY_POSITION p ON pw.idfantasyposition = p.id',
 '  WHERE pw.idfantasyworkteam = :P18_EQUIPOFANTASY',
 '),',
-'-- puntos por jugador para la temporada/equipo en la semana concreta',
+'-- lista de jugadores del equipo (filtro por temporada/equipo)',
+'team_players AS (',
+'  SELECT pl.id player_id',
+'  FROM FANTASY_PLAYER pl',
+'  WHERE pl.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'    AND pl.idfantasyseason = :P18_TEMPORADA',
+'),',
+unistr('-- posiciones posibles por jugador: posici\00F3n base + posiciones adicionales en la tabla hija'),
+'players_positions AS (',
+unistr('  -- posici\00F3n base del jugador'),
+'  SELECT DISTINCT pl.id AS player_id,',
+'         pl.idfantasypositionbase',
+'  FROM FANTASY_PLAYER pl',
+'  WHERE pl.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'    AND pl.idfantasyseason = :P18_TEMPORADA',
+'',
+'  UNION',
+'',
+'  -- posiciones adicionales registradas en la tabla hija',
+'  SELECT DISTINCT fppa.idfantasyplayer AS player_id,',
+'         fppa.idfantasypositionbase',
+'  FROM FANTASY_PLAYER_POSITION_BASE_ADI fppa',
+'  WHERE fppa.idfantasyplayer IN (SELECT player_id FROM team_players)',
+'),',
+'-- puntos por jugador PARA CADA una de sus posiciones posibles para la temporada/equipo en la semana concreta',
 'players_points AS (',
-'  SELECT pl.id player_id,',
-'         pl.idfantasypositionbase,',
+'  SELECT pp.player_id,',
+'         pp.idfantasypositionbase,',
 '         pt.week,',
 '         NVL(pt.fantasypoints,0) fantasypoints',
-'  FROM FANTASY_PLAYER pl',
-'  JOIN FANTASY_POINT pt ON pt.idfantasyplayer = pl.id',
+'  FROM players_positions pp',
+'  JOIN FANTASY_POINT pt ON pt.idfantasyplayer = pp.player_id',
 '  WHERE pt.idfantasyseason = :P18_TEMPORADA',
 '    AND pt.idfantasyworkteam = :P18_EQUIPOFANTASY',
 '    AND pt.week = :P18_SEMANA',
-'    AND pl.idfantasyworkteam = :P18_EQUIPOFANTASY',
-'    AND pl.idfantasyseason = :P18_TEMPORADA',
 '),',
 unistr('-- jugadores elegibles por posici\00F3n (para la construcci\00F3n de la alineaci\00F3n ideal)'),
 'eligible AS (',
@@ -268,7 +290,7 @@ unistr('  NVL(slt.supplier_lineup_desc, ''(sin alineaci\00F3n de proveedor)'') A
 'LEFT JOIN ideal_lineup_text ilt ON 1 = 1',
 'LEFT JOIN ideal_lineup_html ilh ON 1 = 1',
 'LEFT JOIN supplier_lineup_text slt ON slt.supplier_id = swp.supplier_id',
-'LEFT JOIN supplier_lineup_html slh ON slh.supplier_id = swp.supplier_id'))
+'LEFT JOIN supplier_lineup_html slh ON slh.supplier_id = swp.supplier_id;'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P18_TEMPORADA,P18_SEMANA,P18_EQUIPOFANTASY'
 ,p_prn_units=>'MILLIMETERS'
@@ -830,6 +852,27 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_sort_order=>1
 ,p_sort_direction=>'DESC'
 ,p_sort_nulls=>'LAST'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(35677509006851522)
+,p_plug_name=>'carga-bestia'
+,p_title=>'Carga a lo bestia'
+,p_parent_plug_id=>wwv_flow_imp.id(33529036061593807)
+,p_region_template_options=>'#DEFAULT#:t-ContentBlock--h2'
+,p_plug_template=>2322115667525957943
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'SUB_REGIONS'
+,p_location=>null
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p>Analiza los % de acierto de los proveedores.</p>',
+unistr('<p>Estos elementos permiten fijar un l\00EDmite inferior y superior del % de acierto.</p>'),
+unistr('<p>Al pulsar "Carga a lo bestia", todos los proveedores que est\00E9n por debajo del l\00EDmite inferior cargan la Puntuaci\00F3n Win con un 0, los que est\00E9n entre el l\00EDmite inferior y superior, cargan la Puntuaci\00F3n Win de 5, y finalizamente los que est\00E9n por en')
+||unistr('cima del l\00EDmite superior cargan la Puntuaci\00F3n Win a 10.</p>'),
+unistr('<p>NOTA: Solo cargan la puntuaci\00F3n, si el proveedor no la tiene asignada ya. Si ya la tiene asignada, no hace nada.</p>'),
+'<p></p>'))
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840528635767285)
@@ -1508,7 +1551,7 @@ wwv_flow_imp_page.create_ig_report_filter(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(36840623463767286)
-,p_plug_name=>'Proveedor (puntuaciones)'
+,p_plug_name=>'Proveedor (puntuaciones WIN)'
 ,p_region_name=>'region_fija_asignacion'
 ,p_parent_plug_id=>wwv_flow_imp.id(37037477226868772)
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -1642,7 +1685,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_db_column_name=>'IDFANTASYSUPPLIER'
 ,p_display_order=>50
 ,p_column_identifier=>'D'
-,p_column_label=>'Idfantasysupplier'
+,p_column_label=>'Proveedor Id'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'RIGHT'
 ,p_use_as_row_header=>'N'
@@ -1652,7 +1695,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_db_column_name=>'NAMESUPPLIER'
 ,p_display_order=>60
 ,p_column_identifier=>'E'
-,p_column_label=>'Namesupplier'
+,p_column_label=>'Proveedor'
 ,p_column_type=>'STRING'
 ,p_use_as_row_header=>'N'
 );
@@ -1661,7 +1704,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_db_column_name=>'WINPOINT'
 ,p_display_order=>70
 ,p_column_identifier=>'F'
-,p_column_label=>'Winpoint'
+,p_column_label=>'Puntos WIN'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'RIGHT'
 ,p_use_as_row_header=>'N'
@@ -1762,6 +1805,33 @@ wwv_flow_imp_page.create_page_button(
 ,p_grid_new_row=>'Y'
 ,p_security_scheme=>wwv_flow_imp.id(17195882813935255)
 );
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(35678195109851528)
+,p_button_sequence=>50
+,p_button_plug_id=>wwv_flow_imp.id(36840722845767287)
+,p_button_name=>'eliminar-todas-win'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>4072362960822175091
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Limpiar puntuaciones win'
+,p_confirm_message=>unistr('Se van a eliminar todas las asignaciones de puntuaci\00F3n WIN a proveedores de este ejercicio/semana/equipo \00BFest\00E1 seguro?')
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(35677894019851525)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(35677509006851522)
+,p_button_name=>'Cargar_Bestia'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>4072362960822175091
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Cargar Bestia'
+,p_button_position=>'NEXT'
+,p_security_scheme=>wwv_flow_imp.id(17195882813935255)
+);
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(18473512679716414)
 ,p_name=>'P18_ID_BORRADO'
@@ -1793,20 +1863,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov_display_extra=>'NO'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
   'page_action_on_selection', 'NONE')).to_clob
-,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
-'-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
-unistr('-Pero es que adem\00E1s ahora tenemos el panel del breadcrumb bar en el global para verse en todas las paginas, con los datos actualizados con el seleccionado de temporada/equipo -> por eso directamente ocultamos los campos siempre con una server side co')
-||'ndition siempre falsa (no los borramos por dejarlos por si algun dia del futuro queremos cambiar algo... pero vamos, ya no sirven para nada)'))
-);
-wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(18522837972770453)
-,p_name=>'P18_EQUIPOFANTASY_PRECARGA'
-,p_item_sequence=>30
-,p_display_as=>'NATIVE_HIDDEN'
-,p_warn_on_unsaved_changes=>'I'
-,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'Y')).to_clob
 ,p_item_comment=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'OLD: Antes cambiamos temporada/equipo en cada pantalla.',
 '-Ahora la seleccionamos en el HOME con los combos y fijamos las variables globales con ese valor para todas las pantalals -> por eso los pusimos Read Only.',
@@ -1903,6 +1959,42 @@ wwv_flow_imp_page.create_page_item(
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
   'page_action_on_selection', 'NONE')).to_clob
 );
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(35677629877851523)
+,p_name=>'P18_ACIERTO_INFERIOR'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(35677509006851522)
+,p_prompt=>'Limite % acierto Inferior'
+,p_format_mask=>'FM990D90'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>6
+,p_field_template=>1609121967514267634
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'max_value', '100',
+  'min_value', '0',
+  'number_alignment', 'left',
+  'virtual_keyboard', 'decimal')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(35677784116851524)
+,p_name=>'P18_ACIERTO_SUPERIOR'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(35677509006851522)
+,p_prompt=>'Limite % acierto Superior'
+,p_format_mask=>'FM990D90'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>6
+,p_field_template=>1609121967514267634
+,p_item_template_options=>'#DEFAULT#'
+,p_warn_on_unsaved_changes=>'I'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'max_value', '100',
+  'min_value', '0',
+  'number_alignment', 'left',
+  'virtual_keyboard', 'decimal')).to_clob
+);
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(18578219194152441)
 ,p_computation_sequence=>10
@@ -1916,20 +2008,8 @@ wwv_flow_imp_page.create_page_computation(
 ,p_computation_sequence=>20
 ,p_computation_item=>'P18_EQUIPOFANTASY'
 ,p_computation_point=>'BEFORE_HEADER'
-,p_computation_type=>'FUNCTION_BODY'
-,p_computation_language=>'PLSQL'
-,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE',
-'    devolver NUMBER;',
-'BEGIN',
-'    IF :P18_EQUIPOFANTASY_PRECARGA IS NULL THEN',
-'        RETURN :ID_EQUIPO_FANTASY_INICIO;',
-'    ELSE',
-'        devolver := :P18_EQUIPOFANTASY_PRECARGA;',
-'        :P18_EQUIPOFANTASY_PRECARGA := NULL;',
-'        RETURN devolver;',
-'    END IF;',
-'END;'))
+,p_computation_type=>'ITEM_VALUE'
+,p_computation=>'ID_EQUIPO_FANTASY_INICIO'
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(33531909191593836)
@@ -1946,8 +2026,8 @@ wwv_flow_imp_page.create_page_computation(
 '    SELECT to_char(nvl(max(po.week),1))',
 '    INTO week_',
 '    from FANTASY_POINT po',
-'    where po.idfantasyseason = :P16_TEMPORADA',
-'        and po.IDFANTASYWORKTEAM = :P16_EQUIPOFANTASY;',
+'    where po.idfantasyseason = :P18_TEMPORADA',
+'        and po.IDFANTASYWORKTEAM = :P18_EQUIPOFANTASY;',
 '',
 '    return week_;',
 'END;'))
@@ -2134,6 +2214,322 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_when2=>'PLSQL'
 ,p_process_success_message=>unistr('Puntuaci\00F3n proveedor cargada')
 ,p_internal_uid=>18578555673152442
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(35677972486851526)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Cargar Puntuacion Proveedor BESTIA'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'  winPoint_  FANTASY_VALUE.WINPOINT%TYPE;',
+'',
+'  CURSOR cMegaResumen IS',
+'    WITH',
+'    -- posiciones del equipo ordenadas por visualorder (rn = 1..N)',
+'    positions AS (',
+'      SELECT p.id pos_id,',
+'            p.position pos_name,',
+'            p.visualorder,',
+'            ROW_NUMBER() OVER (ORDER BY p.visualorder) rn',
+'      FROM FANTASY_POSITION_WORKTEAM pw',
+'      JOIN FANTASY_POSITION p ON pw.idfantasyposition = p.id',
+'      WHERE pw.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'    ),',
+'    -- lista de jugadores del equipo (filtro por temporada/equipo)',
+'    team_players AS (',
+'      SELECT pl.id player_id',
+'      FROM FANTASY_PLAYER pl',
+'      WHERE pl.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pl.idfantasyseason = :P18_TEMPORADA',
+'    ),',
+unistr('    -- posiciones posibles por jugador: posici\00F3n base + posiciones adicionales en la tabla hija'),
+'    players_positions AS (',
+unistr('      -- posici\00F3n base del jugador'),
+'      SELECT DISTINCT pl.id AS player_id,',
+'            pl.idfantasypositionbase',
+'      FROM FANTASY_PLAYER pl',
+'      WHERE pl.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pl.idfantasyseason = :P18_TEMPORADA',
+'',
+'      UNION',
+'',
+'      -- posiciones adicionales registradas en la tabla hija',
+'      SELECT DISTINCT fppa.idfantasyplayer AS player_id,',
+'            fppa.idfantasypositionbase',
+'      FROM FANTASY_PLAYER_POSITION_BASE_ADI fppa',
+'      WHERE fppa.idfantasyplayer IN (SELECT player_id FROM team_players)',
+'    ),',
+'    -- puntos por jugador PARA CADA una de sus posiciones posibles para la temporada/equipo en la semana concreta',
+'    players_points AS (',
+'      SELECT pp.player_id,',
+'            pp.idfantasypositionbase,',
+'            pt.week,',
+'            NVL(pt.fantasypoints,0) fantasypoints',
+'      FROM players_positions pp',
+'      JOIN FANTASY_POINT pt ON pt.idfantasyplayer = pp.player_id',
+'      WHERE pt.idfantasyseason = :P18_TEMPORADA',
+'        AND pt.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pt.week = :P18_SEMANA',
+'    ),',
+unistr('    -- jugadores elegibles por posici\00F3n (para la construcci\00F3n de la alineaci\00F3n ideal)'),
+'    eligible AS (',
+'      SELECT pos.pos_id,',
+'            pos.visualorder pos_visual,',
+'            pos.rn,',
+'            pp.player_id,',
+'            pp.idfantasypositionbase,',
+'            pp.fantasypoints',
+'      FROM positions pos',
+'      JOIN FANTASY_POSITION_BASE_RELA rela ON rela.idfantasyposition = pos.pos_id',
+'      JOIN players_points pp ON pp.idfantasypositionbase = rela.idfantasypositionbase',
+'    ),',
+'    ordered_positions AS (',
+'      SELECT pos_id, visualorder, rn FROM positions',
+'    ),',
+unistr('    -- CTE recursivo: asigna por orden visual la mejor opci\00F3n disponible para cada posici\00F3n'),
+'    ideal_recursive (rn, pos_id, player_id, points, selected_players) AS (',
+unistr('      -- Anchor: primera posici\00F3n (rn = 1)'),
+'      SELECT p.rn, p.pos_id,',
+'        (SELECT player_id',
+'        FROM (SELECT player_id, fantasypoints',
+'              FROM eligible ee',
+'              WHERE ee.pos_id = p.pos_id',
+'              ORDER BY fantasypoints DESC, player_id)',
+'        WHERE rownum = 1),',
+'        NVL((SELECT fantasypoints',
+'            FROM (SELECT player_id, fantasypoints',
+'                  FROM eligible ee',
+'                  WHERE ee.pos_id = p.pos_id',
+'                  ORDER BY fantasypoints DESC, player_id)',
+'            WHERE rownum = 1), 0),',
+'        NVL(TO_CHAR((SELECT player_id',
+'                    FROM (SELECT player_id',
+'                          FROM eligible ee',
+'                          WHERE ee.pos_id = p.pos_id',
+'                          ORDER BY fantasypoints DESC, player_id)',
+'                    WHERE rownum = 1)), '''')',
+'      FROM (SELECT pos_id, visualorder, rn FROM positions) p',
+'      WHERE p.rn = 1',
+'',
+'      UNION ALL',
+'',
+unistr('      -- Paso recursivo: siguiente posici\00F3n, evitando jugadores ya asignados'),
+'      SELECT i.rn + 1, op.pos_id,',
+'        (SELECT player_id',
+'        FROM (SELECT player_id, fantasypoints',
+'              FROM eligible ee',
+'              WHERE ee.pos_id = op.pos_id',
+'                AND instr('',''||NVL(i.selected_players,'''')||'','', '',''||ee.player_id||'','') = 0',
+'              ORDER BY fantasypoints DESC, player_id)',
+'        WHERE rownum = 1),',
+'        NVL((SELECT fantasypoints',
+'            FROM (SELECT player_id, fantasypoints',
+'                  FROM eligible ee',
+'                  WHERE ee.pos_id = op.pos_id',
+'                    AND instr('',''||NVL(i.selected_players,'''')||'','', '',''||ee.player_id||'','') = 0',
+'                  ORDER BY fantasypoints DESC, player_id)',
+'            WHERE rownum = 1), 0),',
+'        NVL(i.selected_players,'''') ||',
+'          CASE',
+'            WHEN (SELECT player_id',
+'                  FROM (SELECT player_id',
+'                        FROM eligible ee',
+'                        WHERE ee.pos_id = op.pos_id',
+'                          AND instr('',''||NVL(i.selected_players,'''')||'','', '',''||ee.player_id||'','') = 0',
+'                        ORDER BY fantasypoints DESC, player_id)',
+'                  WHERE rownum = 1) IS NOT NULL',
+'            THEN '','' || TO_CHAR((SELECT player_id',
+'                                FROM (SELECT player_id',
+'                                      FROM eligible ee',
+'                                      WHERE ee.pos_id = op.pos_id',
+'                                        AND instr('',''||NVL(i.selected_players,'''')||'','', '',''||ee.player_id||'','') = 0',
+'                                      ORDER BY fantasypoints DESC, player_id)',
+'                                WHERE rownum = 1))',
+'            ELSE ''''',
+'          END',
+'      FROM ideal_recursive i',
+'      JOIN ordered_positions op ON op.rn = i.rn + 1',
+'    ),',
+unistr('    -- Alineaci\00F3n ideal (filas por posici\00F3n con su jugador y puntos)'),
+'    ideal_lineup AS (',
+'      SELECT ir.rn AS seq, ir.pos_id, ir.player_id, NVL(ir.points,0) points',
+'      FROM ideal_recursive ir',
+'    ),',
+unistr('    -- Total de la alineaci\00F3n ideal (suma de puntos)'),
+'    ideal_total AS (',
+'      SELECT NVL(SUM(points),0) AS ideal_points FROM ideal_lineup',
+'    ),',
+unistr('    -- Texto representativo de la alineaci\00F3n ideal (POS: Jugador (puntos)) - texto plano (CHR(10))'),
+'    ideal_lineup_text AS (',
+'      SELECT LISTAGG(p.position || '': '' || NVL(pl.name,''(sin jugador)'') || '' ('' || TO_CHAR(ROUND(il.points,2)) || '')'', CHR(10))',
+'              WITHIN GROUP (ORDER BY p.visualorder) AS ideal_lineup_desc',
+'      FROM ideal_lineup il',
+'      JOIN FANTASY_POSITION p ON p.id = il.pos_id',
+'      LEFT JOIN FANTASY_PLAYER pl ON pl.id = il.player_id',
+'    ),',
+unistr('    -- VERSI\00D3N HTML de la alineaci\00F3n ideal (br + contenedor pre-wrap)'),
+'    ideal_lineup_html AS (',
+'      SELECT ''<div style="white-space:pre-wrap;">'' ||',
+'            LISTAGG(p.position || '': '' || NVL(pl.name,''(sin jugador)'') || '' ('' || TO_CHAR(ROUND(il.points,2)) || '')'', ''<br/>'')',
+'              WITHIN GROUP (ORDER BY p.visualorder)',
+'            || ''</div>'' AS ideal_lineup_desc_html',
+'      FROM ideal_lineup il',
+'      JOIN FANTASY_POSITION p ON p.id = il.pos_id',
+'      LEFT JOIN FANTASY_PLAYER pl ON pl.id = il.player_id',
+'    ),',
+unistr('    -- proveedores que hicieron proyecciones esa semana y suma de puntos de su alineaci\00F3n'),
+'    supplier_week_points AS (',
+'      SELECT pr.idfantasysupplier supplier_id,',
+'            SUM(NVL(fp.fantasypoints,0)) supplier_points',
+'      FROM FANTASY_PROYECTION pr',
+'      LEFT JOIN FANTASY_POINT fp',
+'        ON pr.idfantasyseason = fp.idfantasyseason',
+'      AND pr.idfantasyworkteam = fp.idfantasyworkteam',
+'      AND pr.week = fp.week',
+'      AND pr.idfantasyplayer = fp.idfantasyplayer',
+'      WHERE pr.idfantasyseason = :P18_TEMPORADA',
+'        AND pr.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pr.week = :P18_SEMANA',
+'      GROUP BY pr.idfantasysupplier',
+'    ),',
+unistr('    -- texto representativo de la alineaci\00F3n que cada proveedor proyect\00F3 (POS: Jugador (puntos)) - texto plano'),
+'    supplier_lineup_text AS (',
+'      SELECT pr.idfantasysupplier supplier_id,',
+'            LISTAGG(pos.position || '': '' || NVL(pl.name,''(sin jugador)'') || '' ('' || NVL(TO_CHAR(ROUND(fp.fantasypoints,2)),''0'') || '')'', CHR(10))',
+'              WITHIN GROUP (ORDER BY pos.visualorder) AS supplier_lineup_desc',
+'      FROM FANTASY_PROYECTION pr',
+'      LEFT JOIN FANTASY_PLAYER pl ON pl.id = pr.idfantasyplayer',
+'      LEFT JOIN FANTASY_POSITION pos ON pos.id = pr.idfantasyposition',
+'      LEFT JOIN FANTASY_POINT fp ON fp.idfantasyseason = pr.idfantasyseason',
+'                            AND fp.idfantasyworkteam = pr.idfantasyworkteam',
+'                            AND fp.week = pr.week',
+'                            AND fp.idfantasyplayer = pr.idfantasyplayer',
+'      WHERE pr.idfantasyseason = :P18_TEMPORADA',
+'        AND pr.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pr.week = :P18_SEMANA',
+'      GROUP BY pr.idfantasysupplier',
+'    ),',
+unistr('    -- VERSI\00D3N HTML de la alineaci\00F3n del proveedor'),
+'    supplier_lineup_html AS (',
+'      SELECT pr.idfantasysupplier supplier_id,',
+'            ''<div style="white-space:pre-wrap;">'' ||',
+'            LISTAGG(pos.position || '': '' || NVL(pl.name,''(sin jugador)'') || '' ('' || NVL(TO_CHAR(ROUND(fp.fantasypoints,2)),''0'') || '')'', ''<br/>'')',
+'              WITHIN GROUP (ORDER BY pos.visualorder)',
+'            || ''</div>'' AS supplier_lineup_desc_html',
+'      FROM FANTASY_PROYECTION pr',
+'      LEFT JOIN FANTASY_PLAYER pl ON pl.id = pr.idfantasyplayer',
+'      LEFT JOIN FANTASY_POSITION pos ON pos.id = pr.idfantasyposition',
+'      LEFT JOIN FANTASY_POINT fp ON fp.idfantasyseason = pr.idfantasyseason',
+'                            AND fp.idfantasyworkteam = pr.idfantasyworkteam',
+'                            AND fp.week = pr.week',
+'                            AND fp.idfantasyplayer = pr.idfantasyplayer',
+'      WHERE pr.idfantasyseason = :P18_TEMPORADA',
+'        AND pr.idfantasyworkteam = :P18_EQUIPOFANTASY',
+'        AND pr.week = :P18_SEMANA',
+'      GROUP BY pr.idfantasysupplier',
+'    )',
+'    -- Resultado final: una fila por proveedor con los datos solicitados',
+'    SELECT',
+'      :P18_SEMANA AS Semana,',
+'      it.ideal_points AS Puntuacion_Alineacion_Ideal,',
+unistr('      NVL(ilt.ideal_lineup_desc, ''(sin alineaci\00F3n ideal)'') AS Alineacion_Ideal,'),
+'      ilh.ideal_lineup_desc_html AS Alineacion_Ideal_HTML,',
+'      su.id AS Proveedor_ID,',
+'      su.name AS Proveedor,',
+'      su.visualorder AS Orden_Visual_Proveedor,',
+'      NVL(swp.supplier_points,0) AS Puntuacion_Proveedor,',
+unistr('      NVL(slt.supplier_lineup_desc, ''(sin alineaci\00F3n de proveedor)'') AS Alineacion_Proveedor,'),
+'      slh.supplier_lineup_desc_html AS Alineacion_Proveedor_HTML,',
+'      CASE WHEN it.ideal_points > 0 THEN ROUND( (NVL(swp.supplier_points,0) / it.ideal_points) * 100, 2) ELSE NULL END AS Porcentaje_Acierto',
+'    FROM supplier_week_points swp',
+'    JOIN FANTASY_SUPPLIER su ON su.id = swp.supplier_id',
+'    CROSS JOIN ideal_total it',
+'    LEFT JOIN ideal_lineup_text ilt ON 1 = 1',
+'    LEFT JOIN ideal_lineup_html ilh ON 1 = 1',
+'    LEFT JOIN supplier_lineup_text slt ON slt.supplier_id = swp.supplier_id',
+'    LEFT JOIN supplier_lineup_html slh ON slh.supplier_id = swp.supplier_id;',
+'',
+'  FUNCTION existeYaCargado(',
+'    p_idfantasyseason IN FANTASY_VALUE.IDFANTASYSEASON%TYPE,',
+'    p_week IN FANTASY_VALUE.WEEK%TYPE,',
+'    p_idfantasysupplier IN FANTASY_VALUE.IDFANTASYSUPPLIER%TYPE,',
+'    p_idfantasyworkteam IN FANTASY_VALUE.IDFANTASYWORKTEAM%TYPE)',
+'  RETURN BOOLEAN IS',
+'    v_count INTEGER;',
+'  BEGIN',
+'    SELECT COUNT(*)',
+'    INTO v_count',
+'    FROM FANTASY_VALUE',
+'    WHERE idfantasyseason = p_idfantasyseason',
+'      AND week = p_week',
+'      AND idfantasysupplier = p_idfantasysupplier',
+'      AND idfantasyworkteam = p_idfantasyworkteam;',
+'',
+'    RETURN v_count > 0;',
+'  END existeYaCargado;',
+'',
+'BEGIN --PROCEDIMIENTO PRINCIPAL',
+'  IF :P18_ACIERTO_INFERIOR IS NOT NULL AND :P18_ACIERTO_SUPERIOR IS NOT NULL ',
+'    AND :P18_ACIERTO_INFERIOR < :P18_ACIERTO_SUPERIOR THEN',
+'    FOR rMegaResumen IN cMegaResumen LOOP',
+'      winPoint_ := 0;',
+'      IF rMegaResumen.Porcentaje_Acierto BETWEEN :P18_ACIERTO_INFERIOR AND :P18_ACIERTO_SUPERIOR THEN',
+'        winPoint_ := 5;',
+'      ELSIF rMegaResumen.Porcentaje_Acierto > :P18_ACIERTO_SUPERIOR THEN',
+'        winPoint_ := 10;',
+'      END IF;',
+'',
+'      IF NOT existeYaCargado(:P18_TEMPORADA, :P18_SEMANA, rMegaResumen.Proveedor_ID, :P18_EQUIPOFANTASY) THEN',
+'',
+'        INSERT INTO FANTASY_VALUE(',
+'          idfantasyseason,',
+'          week,',
+'          idfantasysupplier,',
+'          winpoint,',
+'          IDFANTASYWORKTEAM)',
+'        VALUES(',
+'          :P18_TEMPORADA,',
+'          :P18_SEMANA,',
+'          rMegaResumen.Proveedor_ID,',
+'          winPoint_,',
+'          :P18_EQUIPOFANTASY);',
+'      END IF;',
+'',
+'    END LOOP;',
+'',
+'  END IF;',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_process_error_message=>'Error al cargar a lo bestia puntuaciones en proveedores'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_imp.id(35677894019851525)
+,p_process_when=>wwv_flow_string.join(wwv_flow_t_varchar2(
+':P18_ACIERTO_INFERIOR IS NOT NULL AND :P18_ACIERTO_SUPERIOR IS NOT NULL',
+'AND :P18_ACIERTO_INFERIOR < :P18_ACIERTO_SUPERIOR'))
+,p_process_when_type=>'EXPRESSION'
+,p_process_when2=>'PLSQL'
+,p_process_success_message=>'Puntuaciones proveedores cargadas a lo bestia'
+,p_internal_uid=>35677972486851526
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(35678200515851529)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Limpiar Puntuacion Proveedor'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DELETE FROM FANTASY_VALUE',
+'WHERE idfantasyseason = :P18_TEMPORADA',
+'  AND week = :P18_SEMANA',
+'  AND IDFANTASYWORKTEAM = :P18_EQUIPOFANTASY;'))
+,p_process_clob_language=>'PLSQL'
+,p_process_error_message=>'Error al limpiar puntuaciones de proveedores'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_imp.id(35678195109851528)
+,p_process_success_message=>'Limpiadas puntuaciones de proveedor'
+,p_internal_uid=>35678200515851529
 );
 wwv_flow_imp.component_end;
 end;
