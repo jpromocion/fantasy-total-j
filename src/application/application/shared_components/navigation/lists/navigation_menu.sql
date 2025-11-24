@@ -15,7 +15,7 @@ wwv_flow_imp_shared.create_list(
  p_id=>wwv_flow_imp.id(16997553637935088)
 ,p_name=>'Navigation Menu'
 ,p_list_status=>'PUBLIC'
-,p_version_scn=>39293090834918
+,p_version_scn=>39293862018442
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17201696753935279)
@@ -69,6 +69,24 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_icon=>'fa-calculator'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'17,18'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(37602241422334640)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'Proyecciones Dynasty'
+,p_list_item_link_target=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-strategy'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'10'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(37775585918284511)
+,p_list_item_display_sequence=>51
+,p_list_item_link_text=>'Proyecciones ROS'
+,p_list_item_link_target=>'f?p=&APP_ID.:30:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-line-map'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'30'
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(17351266549251710)

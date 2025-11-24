@@ -41,7 +41,9 @@ prompt --install
 @@application/shared_components/user_interface/lovs/posiciones_jugador.sql
 @@application/shared_components/user_interface/lovs/puntuacion_proveedor.sql
 @@application/shared_components/user_interface/lovs/semanas.sql
+@@application/shared_components/user_interface/lovs/sino_y_n.sql
 @@application/shared_components/user_interface/lovs/temporadas_existentes.sql
+@@application/shared_components/user_interface/lovs/tipo_long_term.sql
 @@application/pages/page_groups.sql
 @@application/comments.sql
 @@application/shared_components/navigation/breadcrumbs/breadcrumb.sql
@@ -70,6 +72,7 @@ prompt --install
 @@application/pages/page_00007.sql
 @@application/pages/page_00008.sql
 @@application/pages/page_00009.sql
+@@application/pages/page_00010.sql
 @@application/pages/page_00011.sql
 @@application/pages/page_00012.sql
 @@application/pages/page_00013.sql
@@ -82,6 +85,7 @@ prompt --install
 @@application/pages/page_00022.sql
 @@application/pages/page_00023.sql
 @@application/pages/page_00024.sql
+@@application/pages/page_00030.sql
 @@application/pages/page_09999.sql
 @@application/pages/page_10000.sql
 @@application/pages/page_10010.sql
@@ -99,6 +103,7 @@ prompt --install
 @@application/deployment/install/install_delta_2_4_sql.sql
 @@application/deployment/install/install_delta_2_5_sql.sql
 @@application/deployment/install/install_delta_2_6_sql.sql
+@@application/deployment/install/install_delta_2_7_sql.sql
 @@application/deployment/checks.sql
 @@application/deployment/buildoptions.sql
 @@application/end_environment.sql
