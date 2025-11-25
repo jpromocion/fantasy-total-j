@@ -16,6 +16,7 @@ Tiene un dashboard de inicio de gráficos para resumir los datos principales, y 
 
 Versión 2:
  * Incluido la posibilidad de funcionar con multi-equipos fantasy para trabajar varias ligas en la misma aplicación
+ * Se incluye la carga desde ap1licación `fantasy-nfl-j-weekly-lineups` de rankings Dynasty o ROS.
 
 ## Requisitos
 
